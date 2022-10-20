@@ -15,11 +15,9 @@ const userSchema = mongoose.Schema({
     }, 
     jobTitle: {
         type: String,
-        required: true
     },
     hourlyRate: {
         type: Number,
-        required: true
     },
     country: { 
         type: String,
@@ -27,11 +25,14 @@ const userSchema = mongoose.Schema({
     },
     category: {
         type: String,
-        required: true
     },
     bio: {
         type: String,
         required: true
+    },
+    accountType: {
+        type: String,
+        required: true,
     }
 }, { versionKey: false })
 

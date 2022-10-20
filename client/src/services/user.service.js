@@ -18,9 +18,9 @@ export const postUser = async (formData) => {
 }
 
 
-export const getUser = async (walletAddress) => {
+export const getUser = async (walletAddress, accountType) => {
     try {
-        const res = await fetch(`${BASE_URL}/get-user?walletAddress=${walletAddress}`)
+        const res = await fetch(`${BASE_URL}/get-user?walletAddress=${walletAddress}&accountType=${accountType}`)
         return await res.json();
     } catch (e) {
         console.log("[MongoDb] getUser(): ", e)

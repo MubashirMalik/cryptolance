@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { postUser, getUser } from "../services/user.service";
 import CountrySelect from "./CountrySelect";
 import LanguageSelect from "./LanguageSelect"
 import SideBar from "./SideBar";
@@ -9,8 +10,22 @@ const Employer = ({ connection }) => {
         email: "",
         language: "Afrikaans",
         country: "Afghanistan",
-        bio: ""
+        bio: "",
     })
+
+    useEffect(() => {
+        if (connection.isConnected) {
+            getUser(connection.account, "Employer")
+            .then(res =>  {
+                if (!res) {
+                    console.log("Something went wrong..")
+                } else {
+                    console.log(res)
+                    setFormData(res)
+                }
+            })
+        }
+    }, [connection])
 
     const handleChange = (event) => {
         setFormData(prevFormData => ({
@@ -19,14 +34,29 @@ const Employer = ({ connection }) => {
         }))
     }
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        
+        formData.walletAddress = connection.account
+        formData.accountType = "Employer"
+        postUser(formData)
+        .then(res =>  {
+            if (!res) {
+                console.log("Something went wrong..")
+            } else {
+                console.log("Record saved successfully.")
+            }
+        })
+    }
+
     return (
         <div className="h-screen max-w-screen grid grid-flow-col grid-cols-4 gap-4">
             <SideBar />
             {
                 connection.isConnected ? 
                     <div className="bg-slate-900 col-span-3">
-                        <h1 className="pt-10">Enter Details to Become an Employer</h1>
-                        <form action="" method="post" className="w-full">
+                        <h1 className="pt-10 text-2xl font-bold">Enter Details to Become an Employer</h1>
+                        <form onSubmit={handleSubmit} className="w-full">
                             <div className="form-control p-10 pr-20 pl-20">
                                 <label className="label">
                                     <span className="label-text text-slate-300">Your Name</span>

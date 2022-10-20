@@ -17,7 +17,7 @@ const Freelancer = ({connection}) => {
 
     useEffect(() => {
         if (connection.isConnected) {
-            getUser(connection.account)
+            getUser(connection.account, "Freelancer")
             .then(res =>  {
                 if (!res) {
                     console.log("Something went wrong..")
@@ -27,7 +27,7 @@ const Freelancer = ({connection}) => {
                 }
             })
         }
-    }, [connection.account])
+    }, [connection])
 
     const handleChange = (event) => {
         setFormData(prevFormData => ({
@@ -40,6 +40,7 @@ const Freelancer = ({connection}) => {
         event.preventDefault();
         
         formData.walletAddress = connection.account
+        formData.accountType = "Freelancer"
         postUser(formData)
         .then(res =>  {
             if (!res) {
@@ -120,7 +121,7 @@ const Freelancer = ({connection}) => {
                                 </label>
                                 <CategorySelect 
                                     handleChange={handleChange}
-                                    selectedCountry={formData.category}
+                                    selectedCategory={formData.category}
                                 />
                                 <label className="label">
                                     <span className="label-text text-slate-300">Country</span>
