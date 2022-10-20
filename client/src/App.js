@@ -21,8 +21,8 @@ function App() {
 				<Navbar connection={connection} setConnection={setConnection} />
 				<Routes>
 					<Route path="/" element={<Home />} />
-					<Route path="freelancer" element={<Freelancer connection={connection}/>} />
-					<Route path="employer" element={<Employer />} />
+					<Route path="freelancer" element={<Freelancer connection={connection} />} />
+					<Route path="employer" element={<Employer connection={connection} />} />
 					<Route path="findWork" element={<FindWork />} />
 					<Route path="findCandidate" element={<FindCandidate />} />
 				</Routes>

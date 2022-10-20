@@ -13,5 +13,9 @@ exports.postUser = async (req, res, next) => {
 exports.getUser = async (req, res, next) => {
     const { walletAddress } = req.query
     const user = await User.findOne({ walletAddress })
-    res.status(200).json(user)
+    if (user) {
+        res.status(200).json(user)
+    } else {
+        res.status(400).json(user)
+    } 
 }

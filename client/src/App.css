@@ -128,7 +128,6 @@ main p {
 .input {
   padding: 1em 1.5em;
   margin-bottom: 0.5em;
-  border: none;
   min-width: 300px;
   border-radius: 4px;
 }
