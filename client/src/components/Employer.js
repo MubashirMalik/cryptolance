@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { postUser, getUser } from "../services/user.service";
+import { createToast } from "../Util"
 import CountrySelect from "./CountrySelect";
 import LanguageSelect from "./LanguageSelect"
 import SideBar from "./SideBar";
@@ -44,7 +45,7 @@ const Employer = ({ connection }) => {
             if (!res) {
                 console.log("Something went wrong..")
             } else {
-                console.log("Record saved successfully.")
+                createToast({text: "Saved successfully."})
             }
         })
     }

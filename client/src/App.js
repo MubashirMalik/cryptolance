@@ -6,6 +6,9 @@ import Freelancer from './components/Freelancer';
 import Employer from './components/Employer';
 import FindWork from './components/FindWork';
 import FindCandidate from './components/FindCandidate';
+import Footer from './components/Footer';
+import { ToastContainer } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css';
 
 import { useState } from "react";
 
@@ -23,13 +26,12 @@ function App() {
 					<Route path="/" element={<Home />} />
 					<Route path="freelancer" element={<Freelancer connection={connection} />} />
 					<Route path="employer" element={<Employer connection={connection} />} />
-					<Route path="findWork" element={<FindWork />} />
-					<Route path="findCandidate" element={<FindCandidate />} />
+					<Route path="find-work" element={<FindWork connection={connection}/>} />
+					<Route path="find-candidate" element={<FindCandidate connection={connection}/>} />
 				</Routes>
 			</div>
-			<footer className="bg-slate-900">
-				<p>&copy; 2022 FOB. All rights are reserved.</p>
-			</footer>
+			<Footer />
+			<ToastContainer/>
 		</>
 	);
 }

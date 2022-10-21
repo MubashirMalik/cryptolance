@@ -98,22 +98,6 @@ main p {
   align-items: center;
 }
 
-/* .btn {
-  background-color: #191919;
-  border: none;
-  padding: 1em 1.5em;
-  color: #eee;
-  font-weight: 700;
-  border-radius: 4px;
-  cursor: pointer;
-  opacity: 0.9;
-}
-
-.btn:hover {
-  background-color: #eee;
-  color: #191919;
-} */
-
 .outline {
   border: 1px solid #eee;
   margin: 0.5em;
@@ -126,10 +110,9 @@ main p {
 }
 
 .input {
-  padding: 1em 1.5em;
-  margin-bottom: 0.5em;
-  min-width: 300px;
-  border-radius: 4px;
+    padding: 1em 1.5em;
+    margin-bottom: 0.5em;
+    border-radius: 4px;
 }
 
 .hero_card {

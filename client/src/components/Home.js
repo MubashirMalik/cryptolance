@@ -16,8 +16,8 @@ const Home = () => {
                 <div className='main_buttons'>
                     <button className="btn text-white btn-outline mb-2 md:mr-2 w-52" onClick={() => navigate("/freelancer")}>Become a Freelancer</button>
                     <button className="btn text-white btn-outline mb-2 md:mr-2 w-52" onClick={() => navigate("/employer")}>Become a Employer</button>
-                    <button className="btn text-white btn-outline mb-2 md:mr-2 w-52" onClick={() => navigate("/find_work")}>Find Work</button>
-                    <button className="btn text-white btn-outline w-52" onClick={() => navigate("/find_candidate")}>Find Candidates</button>
+                    <button className="btn text-white btn-outline mb-2 md:mr-2 w-52" onClick={() => navigate("/find-work")}>Find Work</button>
+                    <button className="btn text-white btn-outline w-52" onClick={() => navigate("/find-candidate")}>Find Candidates</button>
                 </div>
                 <div className="hero_card grid grid-flow-col col-auto text-slate-900">
                     <div className="flex justify-center items-center">

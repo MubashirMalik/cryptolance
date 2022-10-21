@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { postUser, getUser } from "../services/user.service";
+import { createToast } from "../Util"
 import CountrySelect from "./CountrySelect";
 import CategorySelect from "./CategorySelect"
 import SideBar from "./SideBar";
@@ -46,7 +47,7 @@ const Freelancer = ({connection}) => {
             if (!res) {
                 console.log("Something went wrong..")
             } else {
-                console.log("Record saved successfully.")
+                createToast({text: "Saved successfully."})
             }
         })
     }
@@ -145,7 +146,7 @@ const Freelancer = ({connection}) => {
                             </div>
                             <button className="btn text-white mb-10">Submit Details</button>
                         </form>
-                    </div> 
+                    </div>   
                 :
                     <div className="bg-slate-900 col-span-3 flex justify-center items-center">
                         <h1>You have no accounts connected. Please see How it works section for more information</h1>
