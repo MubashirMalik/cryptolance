@@ -1,5 +1,6 @@
 import CategorySelect from "./CategorySelect";
 import CountrySelect from "./CountrySelect";
+import FreelancerCard from "./FreelancerCard";
 import LanguageSelect from "./LanguageSelect";
 import { SideBarNav } from "./SideBar";
 
@@ -47,29 +48,10 @@ const FindCandidate = ({ connection }) => {
                 </div>
             </div>
             {
-                connection.account ? <div className="bg-slate-900 col-span-3">
-                    <h1 className="pt-10">Fill Details to Find Work</h1>
-                    <form action="" method="post" className="w-full">
-                        <div className="m-10">
-                            <div className="card w-full bg-base-100 shadow-xl mb-4">
-                                <div className="card-body">
-                                    <h2 className="card-title">Fullstack Blockchain Developer</h2>
-                                    <p className="text-left">Master’s degree in computer science, IT, or equivalent experience. 3+ years of experience in developing Blockchain applications. Sound...</p>
-                                    <p className="text-left text-green-400">Hourly Rate: 0.2 Ether</p>
-                                    <div className="rating">
-                                        <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-                                        <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-                                        <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-                                        <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" checked />
-                                        <input type="radio" name="rating-2" className="mask mask-star-2 bg-orange-400" />
-                                    </div>
-                                    <div className="card-actions justify-end">
-                                        <button className="btn">Connect for Work</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+                connection.account ? 
+                    <div className="bg-slate-900 col-span-3">
+                     <h1 className="pt-10 text-2xl font-bold">Find Candidates that fit your need</h1>
+                    <FreelancerCard />
                     <footer className="bg-slate-900">
                         <p>&copy; 2022 FOB. All rights are reserved.</p>
                     </footer>
