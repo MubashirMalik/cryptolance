@@ -3,22 +3,22 @@ import { SiEthereum } from "react-icons/si"
 import { GoLocation } from "react-icons/go"
 import React from 'react'
 
-function FreelancerCard() {
+function FreelancerCard({ fullName, jobTitle, hourlyRate, country, category }) {
 	return (
 		<div className="w-full">
 			<div className="m-10">
 				<div className="card w-full bg-base-100 shadow-xl mb-4">
 					<div className="p-10 pt-7 pb-7 flex flex-col gap-y-1">
 						<div className="flex justify-between">
-							<h2 className="text-2xl font-bold">Mubashir Ahmed</h2>
+							<h2 className="text-2xl font-bold">{ fullName }</h2>
 							<div className="flex items-center">
 								<SiEthereum />
-								<div className="flex ">0.2 ether per hour</div>
+								<div className="flex ">{ hourlyRate } ether per hour</div>
 							</div>
 						</div>
 						<div className="flex justify-between">
-							<h3 className="flex justify-start text-md">Fullstack Blockchain Developer</h3>
-							<div className="flex items-center gap-x-1"><GoLocation />Pakistan</div>
+							<h3 className="flex justify-start text-md">{ jobTitle }</h3>
+							<div className="flex items-center gap-x-1"><GoLocation />{ country }</div>
 						</div>
 						
 						<div className="flex justify-between">
@@ -37,10 +37,8 @@ function FreelancerCard() {
 							</div>
 						</div>
 						<h3 className="flex justify-start text-md mt-4 mb-2 font-semibold">Categories & Skills</h3> 
-						<div className="flex gap-x-1">	
-							<div className="bg-pink-100 p-1 pl-4 pr-4 rounded-full text-sm">Web</div>
-							<div className="bg-pink-100 p-1 pl-4 pr-4 rounded-full text-sm">React</div>
-							<div className="bg-pink-100 p-1 pl-4 pr-4 rounded-full text-sm">Legal</div>	
+						<div className="flex gap-x-1">
+							<div className="bg-pink-100 p-1 pl-4 pr-4 rounded-full text-sm">{ category }</div>
 						</div>
 						<h3 className="flex justify-start text-md mt-4 mb-2 font-semibold">Speaks</h3> 
 						<div className="flex gap-x-1">

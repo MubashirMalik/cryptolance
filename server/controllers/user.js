@@ -19,3 +19,8 @@ exports.getUser = async (req, res, next) => {
         res.status(400).json(user)
     } 
 }
+
+exports.getFreelancers = async (req, res, next) => {
+    const users = await User.find({ accountType: "Freelancer" })
+    res.status(200).json(users)
+}

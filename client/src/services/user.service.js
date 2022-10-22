@@ -1,4 +1,3 @@
-
 const BASE_URL = "http://localhost:3001/user"
 
 export const postUser = async (formData) => {
@@ -24,6 +23,16 @@ export const getUser = async (walletAddress, accountType) => {
         return await res.json();
     } catch (e) {
         console.log("[MongoDb] getUser(): ", e)
+        return null;
+    }
+}
+
+export const getFreelancers = async () => {
+    try {
+        const res = await fetch(`${BASE_URL}/get-freelancers`)
+        return await res.json();
+    } catch (e) {
+        console.log("[MongoDb] getFreelancers(): ", e)
         return null;
     }
 }
