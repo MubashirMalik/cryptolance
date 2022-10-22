@@ -104,7 +104,7 @@ const Employer = ({ connection }) => {
                                 </label>
                                 <LanguageSelect 
                                     handleChange={handleChange}
-                                    selectedCountry={formData.language}
+                                    selectedLanguage={formData.language}
                                 /> 
                                 <label className="label">
                                     <span className="label-text text-slate-300">Bio</span>

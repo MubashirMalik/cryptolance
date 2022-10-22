@@ -3,6 +3,7 @@ import { postUser, getUser } from "../services/user.service";
 import { createToast } from "../Util"
 import CountrySelect from "./CountrySelect";
 import CategorySelect from "./CategorySelect"
+import LanguageSelect from "./LanguageSelect";
 import SideBar from "./SideBar";
 
 const Freelancer = ({connection}) => {
@@ -13,6 +14,7 @@ const Freelancer = ({connection}) => {
         hourlyRate: 0,
         country: "Afghanistan",
         category: "Web, Mobile & Software Dev",
+        language: "Afrikaans",
         bio: "",
     })
 
@@ -124,6 +126,13 @@ const Freelancer = ({connection}) => {
                                     handleChange={handleChange}
                                     selectedCategory={formData.category}
                                 />
+                                <label className="label">
+                                    <span className="label-text text-slate-300">Primary Language</span>
+                                </label>
+                                <LanguageSelect 
+                                    handleChange={handleChange}
+                                    selectedLanguage={formData.language}
+                                /> 
                                 <label className="label">
                                     <span className="label-text text-slate-300">Country</span>
                                 </label>

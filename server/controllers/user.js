@@ -1,10 +1,10 @@
 const User = require('../models/user')
 
 exports.postUser = async (req, res, next) => {
-    const {walletAddress, fullName, email, jobTitle, hourlyRate, country, category, bio, accountType} = req.body
+    const {walletAddress, fullName, email, jobTitle, hourlyRate, country, category, bio, accountType, language} = req.body
     const user = await User.updateOne( 
         { walletAddress, accountType }, 
-        { walletAddress, fullName, email, jobTitle, hourlyRate, country, category, bio, accountType }, 
+        { walletAddress, fullName, email, jobTitle, hourlyRate, country, category, bio, accountType, language }, 
         { upsert : true }, 
     );
     res.status(200).json(user)

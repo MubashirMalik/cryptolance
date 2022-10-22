@@ -30,6 +30,10 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    language: {
+        type: String,
+        require: true
+    },
     accountType: {
         type: String,
         required: true,

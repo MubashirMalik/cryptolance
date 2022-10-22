@@ -3,7 +3,7 @@ import { SiEthereum } from "react-icons/si"
 import { GoLocation } from "react-icons/go"
 import React from 'react'
 
-function FreelancerCard({ fullName, jobTitle, hourlyRate, country, category }) {
+function FreelancerCard({ fullName, jobTitle, hourlyRate, country, category, language }) {
 	return (
 		<div className="w-full">
 			<div className="m-10">
@@ -42,7 +42,7 @@ function FreelancerCard({ fullName, jobTitle, hourlyRate, country, category }) {
 						</div>
 						<h3 className="flex justify-start text-md mt-4 mb-2 font-semibold">Speaks</h3> 
 						<div className="flex gap-x-1">
-							<div className="bg-pink-100 p-1 pl-4 pr-4 rounded-full text-sm">English</div>
+							<div className="bg-pink-100 p-1 pl-4 pr-4 rounded-full text-sm">{ language }</div>
 						</div>
 						<div className="flex justify-end">
 							<button className="btn">Connect for Work</button>
