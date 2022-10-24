@@ -11,6 +11,7 @@ import { ToastContainer } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
 
 import { useState } from "react";
+import PostProject from './components/PostProject';
 
 function App() {
 	const [connection, setConnection] = useState({
@@ -28,6 +29,7 @@ function App() {
 					<Route path="employer" element={<Employer connection={connection} />} />
 					<Route path="find-work" element={<FindWork connection={connection}/>} />
 					<Route path="find-candidate" element={<FindCandidate connection={connection}/>} />
+                    <Route path="post-project" element={<PostProject connection={connection} />} />
 				</Routes>
 			</div>
 			<Footer />
