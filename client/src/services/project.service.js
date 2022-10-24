@@ -15,3 +15,13 @@ export const postProject = async (formData) => {
         return null;
     }
 }
+
+export const getProjects = async () => {
+    try {
+        const res = await fetch(`${BASE_URL}/get-projects`)
+        return await res.json();
+    } catch (e) {
+        console.log("[MongoDb] getProjects(): ", e)
+        return null;
+    }
+}
