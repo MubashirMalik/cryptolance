@@ -8,7 +8,7 @@ const FindWork = ({ connection }) => {
     const [language, setLanguage] = useState(null);
 
     return (
-        <div className="h-screen max-w-screen grid grid-flow-col grid-cols-4 gap-4">
+        <div className="max-w-screen grid grid-flow-col grid-cols-4 gap-4">
             <div className="w-50 bg-slate-800 pt-10 col-span-1">
                <SideBarNav />
                 <div className="bg-slate-900 m-10 pb-10 bg-opacity-60 rounded-lg">
@@ -44,9 +44,6 @@ const FindWork = ({ connection }) => {
                                 </div>
                             </div>
                         </form>
-                        <footer className="bg-slate-900">
-                            <p>&copy; 2022 FOB. All rights are reserved.</p>
-                        </footer>
                     </div> 
                 :
                     <div className="bg-slate-900 col-span-3 flex justify-center items-center">

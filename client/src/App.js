@@ -20,7 +20,7 @@ function App() {
 
 	return (
 		<>
-			<div className="App h-full bg-slate-900">
+			<div className="App bg-slate-900">
 				<Navbar connection={connection} setConnection={setConnection} />
 				<Routes>
 					<Route path="/" element={<Home />} />

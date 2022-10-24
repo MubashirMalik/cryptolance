@@ -51,7 +51,7 @@ const Employer = ({ connection }) => {
     }
 
     return (
-        <div className="h-screen max-w-screen grid grid-flow-col grid-cols-4 gap-4">
+        <div className="max-w-screen grid grid-flow-col grid-cols-4 gap-4">
             <SideBar />
             {
                 connection.isConnected ? 
@@ -121,9 +121,6 @@ const Employer = ({ connection }) => {
                             </div>
                             <button className="btn text-white mb-10">Submit Details</button>
                         </form>
-                        <footer className="bg-slate-900">
-                            <p>&copy; 2022 FOB. All rights are reserved.</p>
-                        </footer>
                     </div> 
                 :
                     <div className="bg-slate-900 col-span-3 flex justify-center items-center">

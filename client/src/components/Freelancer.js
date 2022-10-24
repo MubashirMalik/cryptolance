@@ -55,7 +55,7 @@ const Freelancer = ({connection}) => {
     }
 
     return (
-        <div className="h-screen max-w-screen grid grid-flow-col grid-cols-4 gap-4">
+        <div className="max-w-screen grid grid-flow-col grid-cols-4 gap-4">
             <SideBar />
             {
                 connection.isConnected ? 
