@@ -1,0 +1,17 @@
+const BASE_URL = "http://localhost:3001/project"
+
+export const postProject = async (formData) => {
+    try {
+        const res = await fetch(BASE_URL + "/post-project", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({...formData})
+        })
+        return await res.json();
+    } catch (e) {
+        console.log("[MongoDb] postProject(): ", e)
+        return null;
+    }
+}

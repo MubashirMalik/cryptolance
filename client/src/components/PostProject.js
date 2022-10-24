@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { postProject } from "../services/project.service"
+import { createToast } from '../Util';
 import SideBar from './SideBar';
 import CategorySelect from './CategorySelect';
 
@@ -19,7 +21,16 @@ export default function PostProject({ connection }) {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        alert("Submitted")
+
+        formData.walletAddress = connection.account
+        postProject(formData)
+        .then(res =>  {
+            if (!res) {
+                console.log("Something went wrong..")
+            } else {
+                createToast({text: "Posted successfully."})
+            }
+        })
     }
 
 	return (

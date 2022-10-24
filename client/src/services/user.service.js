@@ -16,7 +16,6 @@ export const postUser = async (formData) => {
     }
 }
 
-
 export const getUser = async (walletAddress, accountType) => {
     try {
         const res = await fetch(`${BASE_URL}/get-user?walletAddress=${walletAddress}&accountType=${accountType}`)
