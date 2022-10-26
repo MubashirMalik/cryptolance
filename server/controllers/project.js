@@ -2,11 +2,7 @@ const Project = require('../models/project')
 
 exports.postProject = async (req, res, next) => {
     const {walletAddress, title, description, budget, category } = req.body
-    const project = await Project.updateOne( 
-        { walletAddress}, 
-        { walletAddress, title, description, budget, category }, 
-        { upsert : true }, 
-    );
+    const project = await Project.create({ walletAddress, title, description, budget, category });
     res.status(200).json(project)
 }
 
