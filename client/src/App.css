@@ -31,10 +31,6 @@ a {
   text-decoration: none;
 }
 
-.App {
-  text-align: center;
-}
-
 .App-logo {
   height: 5vmin;
   pointer-events: none;
@@ -167,11 +163,6 @@ section img {
 
 .contact h1 {
   margin: 0;
-}
-
-footer {
-  padding: 5px;
-  font-weight: 500;
 }
 
 @keyframes float {

@@ -1,9 +1,8 @@
 import { AiFillStar } from "react-icons/ai"
 import { SiEthereum } from "react-icons/si"
-import { useNavigate } from "react-router-dom"
+import React from 'react'
 
-function ProjectCard({ _id, title, description, budget, category }) {
-    const navigate = useNavigate()
+function ProposalCard({ title, description, budget, category }) {
 	return (
 		<div className="w-full">
 			<div className="m-10">
@@ -43,8 +42,9 @@ function ProjectCard({ _id, title, description, budget, category }) {
 						</div>
 						<div className="flex justify-end gap-x-1">
 							<button className="btn">Place Bid</button>
-                            <button className="btn" onClick={() => navigate(`/view-proposals/${_id}`)}>Proposals</button>
+                            <button className="btn">Proposals</button>
 						</div>
+						
 					</div>
 				</div>
 			</div>
@@ -52,4 +52,4 @@ function ProjectCard({ _id, title, description, budget, category }) {
 	)
 }
 
-export default ProjectCard
+export default ProposalCard

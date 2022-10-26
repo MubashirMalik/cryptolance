@@ -60,9 +60,9 @@ const Freelancer = ({connection}) => {
             {
                 connection.isConnected ? 
                     <div className="bg-slate-900 col-span-3">
-                        <h1 className="pt-10 text-2xl font-bold">Enter Details to Become a Freelancer</h1>
+                        <h1 className="pl-20 pt-10 pb-5 text-2xl font-bold">Enter Details to Become a Freelancer</h1>
                         <form onSubmit={handleSubmit} className="w-full">
-                            <div className="form-control p-10 pr-20 pl-20">
+                            <div className="form-control pr-20 pl-20">
                                 <label className="label">
                                     <span className="label-text text-slate-300">Your Name</span>
                                 </label>
@@ -152,8 +152,10 @@ const Freelancer = ({connection}) => {
                                     value={formData.bio}
                                     required
                                 />
+                                <div className="flex justify-center mt-5">
+                                    <button className="btn text-white mb-5">Submit Details</button>
+                                </div>
                             </div>
-                            <button className="btn text-white mb-10">Submit Details</button>
                         </form>
                     </div>   
                 :

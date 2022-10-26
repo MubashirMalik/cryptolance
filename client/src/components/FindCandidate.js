@@ -110,7 +110,7 @@ const FindCandidate = ({ connection }) => {
             {
                 connection.account ? 
                     <div className="bg-slate-900 col-span-3">
-                        <h1 className="pt-10 text-2xl font-bold">Find Candidates that fit your need</h1>
+                        <h1 className="pl-10 pt-10 text-2xl font-bold">Find Candidates that fit your need</h1>
                         { displayFreelancers }
                     </div> 
                 :

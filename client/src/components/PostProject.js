@@ -39,9 +39,9 @@ export default function PostProject({ connection }) {
             {
                 connection.isConnected ? 
                     <div className="bg-slate-900 col-span-3">
-                        <h1 className="pt-10 text-2xl font-bold">Tell us what you need done</h1>
+                        <h1 className="pl-20 pt-10 pb-5 text-2xl font-bold">Tell us what you need done</h1>
                         <form onSubmit={handleSubmit} className="w-full">
-                            <div className="form-control p-10 pr-20 pl-20">
+                            <div className="form-control pr-20 pl-20">
                                 <label className="label">
                                     <span className="label-text text-slate-300">Choose a title for your project</span>
                                 </label>
@@ -94,8 +94,10 @@ export default function PostProject({ connection }) {
                                     className="input input-bordered w-full max-w-screen" 
                                     value={connection.account} 
                                 />
+                                <div className="flex justify-center mt-5">
+                                    <button className="btn text-white mb-5">Post Project</button>
+                                </div>
                             </div>
-                            <button className="btn text-white mb-10">Post Project</button>
                         </form>
                     </div>   
                 :
