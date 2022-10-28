@@ -30,7 +30,7 @@ const Navbar = ({ connection, setConnection }) => {
         <nav className="flex justify-between p-2 md:pl-10 md:pr-10 md:pt-2 md:pb-2 bg-black bg-opacity-40">
             <Link to="/" className="flex justify-center items-center">
                 <img src={require('../logo.png')} className="App-logo" alt="logo" />
-                <h2 className="text-white font-extrabold">FiverrBlock</h2>
+                <h2 className="text-white font-extrabold">Cryptolance</h2>
             </Link>
             {connection.account !== "" ? 
                 <button className="btn">

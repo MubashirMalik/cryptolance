@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-contract FiverrBlock {
+contract Cryptolance {
 
     struct Freelancer {
         string email;
