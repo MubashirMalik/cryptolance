@@ -10,7 +10,7 @@ const Freelancer = ({connection}) => {
     const [formData, setFormData] = useState({
         fullName: "",
         jobTitle: "",
-        email: "",
+        // email: "",
         hourlyRate: 0,
         country: "Afghanistan",
         category: "Web, Mobile & Software Dev",
@@ -75,7 +75,7 @@ const Freelancer = ({connection}) => {
                                     onChange={handleChange}
                                     required 
                                 />
-                                <label className="label">
+                                {/* <label className="label">
                                     <span className="label-text text-slate-300">Your Email</span>
                                 </label>
                                 <input 
@@ -86,7 +86,7 @@ const Freelancer = ({connection}) => {
                                     value={formData.email} 
                                     onChange={handleChange} 
                                     required
-                                />
+                                /> */}
                                 <label className="label">
                                     <span className="label-text text-slate-300">Wallet Address [Connected]</span>
                                 </label>

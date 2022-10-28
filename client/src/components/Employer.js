@@ -8,7 +8,7 @@ import SideBar from "./SideBar";
 const Employer = ({ connection }) => {
     const [formData, setFormData] = useState({
         fullName: "",
-        email: "",
+        // email: "",
         language: "Afrikaans",
         country: "Afghanistan",
         bio: "",
@@ -71,7 +71,7 @@ const Employer = ({ connection }) => {
                                     onChange={handleChange}
                                     required 
                                 />
-                                <label className="label">
+                                {/* <label className="label">
                                     <span className="label-text text-slate-300">Your Email</span>
                                 </label>
                                 <input 
@@ -82,7 +82,7 @@ const Employer = ({ connection }) => {
                                     value={formData.email} 
                                     onChange={handleChange} 
                                     required
-                                />
+                                /> */}
                                 <label className="label">
                                     <span className="label-text text-slate-300">Wallet Address [Connected]</span>
                                 </label>
