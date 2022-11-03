@@ -2,7 +2,7 @@ import { AiFillStar } from "react-icons/ai"
 import { SiEthereum } from "react-icons/si"
 import { useNavigate } from "react-router-dom"
 
-function ProjectCard({ _id, title, description, budget, category }) {
+function ProjectCard({ _id, title, description, budget, category, walletAddress }) {
     const navigate = useNavigate()
 	return (
 		<div className="w-full">
@@ -25,9 +25,7 @@ function ProjectCard({ _id, title, description, budget, category }) {
 							<div className="bg-pink-100 p-1 pl-4 pr-4 rounded-full text-sm">{ category }</div>
 						</div>
                         <div className="flex justify-between mt-3 mb-4">
-							<div>
-                                <b className="font-semibold">Posted by: </b> 
-                                0x0eB74ebD4Edb10BCB272957604E677408fe38466</div>
+							<div><b className="font-semibold">Posted by: </b>{walletAddress}</div>
 							<div className="flex items-center justify-between">
 								<div className="flex gap-x-1">
 									<div className="flex items-center">
@@ -42,8 +40,8 @@ function ProjectCard({ _id, title, description, budget, category }) {
 							</div>
 						</div>
 						<div className="flex justify-end gap-x-1">
-							<button className="btn">Place Bid</button>
-                            <button className="btn" onClick={() => navigate(`/view-proposals/${_id}`)}>Proposals</button>
+							<button className="btn" onClick={() => navigate(`/view-proposals/${walletAddress}/${_id}`)}>Place Bid</button>
+                            <button className="btn" onClick={() => navigate(`/view-proposals/${walletAddress}/${_id}`)}>Proposals</button>
 						</div>
 					</div>
 				</div>

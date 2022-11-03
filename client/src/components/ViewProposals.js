@@ -1,14 +1,42 @@
 import { useState, useEffect } from "react";
-import { getProposals } from "../services/proposal.service";
+import { useParams } from "react-router-dom";
+import { createToast } from "../Util";
+import { getProposals, postProposal } from "../services/proposal.service";
 import ProposalCard from "./ProposalCard";
 import { SideBarNav } from "./SideBar";
 
 
 const ViewProposals = ({ connection }) => {
     const [proposals, setProposals] = useState([])
+    const [formData, setFormData] = useState({
+        amount: 0,
+        description: "",
+        projectId: useParams().projectId,
+        projectOwner: useParams().projectOwner
+    })
 
+    const handleChange = (event) => {
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            [event.target.name]: event.target.value
+        }))
+    }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        
+        formData.walletAddress = connection.account
+        postProposal(formData)
+        .then(res =>  {
+            if (!res) {
+                console.log("Something went wrong..")
+            } else {
+                createToast({text: "Posted successfully."})
+            }
+        })
+    }
     useEffect(() => {
-        getProposals()
+        getProposals(formData.projectId)
         .then(res =>  {
             if (!res) {
                 console.log("Something went wrong..")
@@ -18,7 +46,7 @@ const ViewProposals = ({ connection }) => {
         })
     }, [])
 
-    const displayProposals = proposals.map((proposal) => <ProposalCard {...proposal} key={proposal._id} />)
+    const displayProposals = proposals.map((proposal, index) => <ProposalCard {...proposal} key={proposal._id} number={index+1} connection={connection} />)
 
     return (
         <div className="max-w-screen grid grid-flow-col grid-cols-4 gap-4">
@@ -28,8 +56,54 @@ const ViewProposals = ({ connection }) => {
             {
                 connection.account ? 
                     <div className="bg-slate-900 col-span-3">
-                        <h1 className="pl-10 pt-10 text-2xl font-bold">Proposals</h1>
-                        { displayProposals }
+                        <h1 className="pl-10 pt-10 text-2xl font-bold text-center">Proposals</h1>
+                        { proposals.length === 0 ?
+                            <div className="bg-slate-900 col-span-3 flex justify-center items-center mb-4">
+                                <h1>Be the first to submit a proposal. There are no proposals submitted for this project.</h1>
+                            </div> :
+                            displayProposals
+                            
+                        }
+                        <h1 className="pl-10 text-2xl font-bold text-center">Place Bid</h1>
+                        <form onSubmit={handleSubmit} className="w-full">
+                            <div className="form-control pr-20 pl-20">
+                                <label className="label">
+                                    <span className="label-text text-slate-300">Wallet Address [Connected]</span>
+                                </label>
+                                <input 
+                                    type="text" 
+                                    disabled 
+                                    className="input input-bordered w-full max-w-screen" 
+                                    value={connection.account} 
+                                />
+                                <label className="label">
+                                    <span className="label-text text-slate-300">Amount (Ether)</span>
+                                </label>
+                                <input 
+                                    type="text" 
+                                    name="amount"
+                                    className="input input-bordered w-full max-w-screen " 
+                                    value={formData.amount} 
+                                    onChange={handleChange}
+                                    required
+                                />     
+                                <label className="label">
+                                    <span className="label-text text-slate-300">Description</span>
+                                </label>
+                                <textarea 
+                                    className="textarea textarea-bordered "
+                                    name="description" 
+                                    cols={5} rows={5} 
+                                    placeholder="Tell us a little about yourself" 
+                                    onChange={handleChange}
+                                    value={formData.description}
+                                    required
+                                />
+                                <div className="flex justify-center mt-5">
+                                    <button className="btn text-white mb-5">Submit Proposal</button>
+                                </div>
+                            </div>
+                        </form>
                     </div> 
                 :
                     <div className="bg-slate-900 col-span-3 flex justify-center items-center">

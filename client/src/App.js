@@ -36,7 +36,7 @@ function App() {
 					<Route path="/find-work" element={<FindWork connection={connection}/>} />
 					<Route path="/find-candidate" element={<FindCandidate connection={connection}/>} />
                     <Route path="/post-project" element={<PostProject connection={connection} />} />
-                    <Route path="/view-proposals/:projectId" element={<ViewProposals connection={connection} />} />
+                    <Route path="/view-proposals/:projectOwner/:projectId" element={<ViewProposals connection={connection} />} />
 				</Routes>
 			</div>
 			<Footer />

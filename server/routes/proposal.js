@@ -4,7 +4,7 @@ const proposalControllers = require('../controllers/proposal')
 
 const router = express.Router()
 
-router.get('/get-proposals', proposalControllers.getProposals)
+router.get('/get-proposals/:projectId', proposalControllers.getProposals)
 
 router.post('/post-proposal', proposalControllers.postProposal)
 

@@ -1,6 +1,6 @@
 const BASE_URL = "http://localhost:3001/proposal"
 
-export const postProject = async (formData) => {
+export const postProposal = async (formData) => {
     try {
         const res = await fetch(BASE_URL + "/post-proposal", {
             method: "POST",
@@ -16,9 +16,9 @@ export const postProject = async (formData) => {
     }
 }
 
-export const getProposals = async () => {
+export const getProposals = async (projectId) => {
     try {
-        const res = await fetch(`${BASE_URL}/get-proposals`)
+        const res = await fetch(`${BASE_URL}/get-proposals/${projectId}`)
         return await res.json();
     } catch (e) {
         console.log("[MongoDb] getProposals(): ", e)

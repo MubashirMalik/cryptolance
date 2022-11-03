@@ -6,7 +6,12 @@ const proposalSchema = mongoose.Schema({
         required: true,
     },
     projectId: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: String,
+        // type: mongoose.Schema.Types.ObjectId,
+        required: true
+    },
+    projectOwner: {
+        type: String,
         required: true
     },
     amount:  {
