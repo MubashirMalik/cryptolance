@@ -1,7 +1,7 @@
 const Migrations = artifacts.require("Migrations");
-const FiverrBlock = artifacts.require("FiverrBlock")
+const Cryptolance = artifacts.require("Cryptolance")
 
 module.exports = function (deployer) {
   deployer.deploy(Migrations);
-  deployer.deploy(FiverrBlock);
+  deployer.deploy(Cryptolance);
 };

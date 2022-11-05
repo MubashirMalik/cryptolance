@@ -3,7 +3,7 @@ import { SiEthereum } from "react-icons/si"
 import { GoLocation } from "react-icons/go"
 import React from 'react'
 
-function FreelancerCard({ fullName, jobTitle, hourlyRate, country, category, language }) {
+function FreelancerCard({ fullName, jobTitle, walletAddress, hourlyRate, country, category, language }) {
 	return (
 		<div className="w-full">
 			<div className="m-10">
@@ -22,7 +22,7 @@ function FreelancerCard({ fullName, jobTitle, hourlyRate, country, category, lan
 						</div>
 						
 						<div className="flex justify-between">
-							<div>0x0eB74ebD4Edb10BCB272957604E677408fe38466</div>
+							<div>{walletAddress}</div>
 							<div className="flex items-center justify-between">
 								<div className="flex gap-x-1">
 									<div className="flex items-center">

@@ -8,6 +8,7 @@ const app = express();
 const userRoutes = require('./routes/user');
 const projectRoutes = require("./routes/project");
 const proposalRoutes = require("./routes/proposal");
+const messageRoutes = require("./routes/message");
 
 app.use(express.json())
 app.use(cors());
@@ -16,6 +17,7 @@ app.use(cors());
 app.use("/user", userRoutes);
 app.use("/project", projectRoutes);
 app.use("/proposal", proposalRoutes)
+app.use("/message", messageRoutes)
 
 mongoose
     .connect(process.env.MONGO_URI, {

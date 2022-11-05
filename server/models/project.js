@@ -21,6 +21,11 @@ const projectSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    status: {
+        type: String,
+        required: true
+    },
+    awardedTo: String
 }, { versionKey: false })
 
 module.exports = mongoose.model('Project', projectSchema)

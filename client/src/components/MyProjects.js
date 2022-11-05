@@ -3,11 +3,11 @@ import { getProjects } from "../services/project.service";
 import ProjectCard from "./ProjectCard";
 import { SideBarNav } from "./SideBar";
 
-const FindWork = ({ connection }) => {
+const MyProjects = ({ connection }) => {
     const [projects, setProjects] = useState([])
 
     useEffect(() => {
-        getProjects('Open')
+        getProjects('In-Progress', 'filtered', connection.account)
         .then(res =>  {
             if (!res) {
                 console.log("Something went wrong..")
@@ -17,7 +17,9 @@ const FindWork = ({ connection }) => {
         })
     }, [])
 
-    const displayProjects = projects.map((project) => <ProjectCard {...project} key={project._id} />)
+    const displayProjects = projects.map((project) => <ProjectCard 
+        {...project} key={project._id} 
+    />)
 
     return (
         <div className="max-w-screen grid grid-flow-col grid-cols-4 gap-4">
@@ -43,4 +45,4 @@ const FindWork = ({ connection }) => {
     );
 }
 
-export default FindWork;
+export default MyProjects;

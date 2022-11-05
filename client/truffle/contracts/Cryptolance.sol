@@ -24,8 +24,8 @@ contract Cryptolance {
         /*
             status = 0, Mapping-check
             status = 1, In-progress
-            status = 2, Completed
-            status = 3, Dispute
+            status = 2, Completed - I
+            status = 3, Completed - II
         */
         uint8 status;
         address awardedTo;
@@ -73,7 +73,7 @@ contract Cryptolance {
         bytes memory ipfsFiles,
         uint256 amount,
         address awardedTo
-    ) external payable onlyRegisteredFreelancer(awardedTo) onlyRegisteredEmployer(msg.sender) {
+    ) external payable /** onlyRegisteredFreelancer(awardedTo) onlyRegisteredEmployer(msg.sender) */ {
         
         require(
             msg.value >= amount,
@@ -81,5 +81,28 @@ contract Cryptolance {
         );
 
         projects[msg.sender].push(Project(title, ipfsDescription, ipfsFiles, amount, 1, awardedTo));
+    }
+
+    function releasePayment(uint256 projectId) external {
+        require(
+            projects[msg.sender][projectId].status == 1,
+            "Project id is not valid"
+        );
+        projects[msg.sender][projectId].status = 2;
+    }
+
+    function completeProject(address employer, uint256 projectId) external {
+        require(
+            projects[employer][projectId].status == 2,
+            "Project id is not valid"
+        );
+
+        require(projects[employer][projectId].awardedTo == msg.sender,
+            "You are not authorized to complete this project"
+        );
+
+        projects[msg.sender][projectId].status = 3;
+        address payable receiver = payable(msg.sender);
+        receiver.transfer(projects[employer][projectId].amount);
     }
 }

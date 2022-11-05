@@ -17,6 +17,15 @@ const Navbar = ({ connection, setConnection }) => {
                 })
                 console.log("Account unlocked:", isUnlocked)
             });
+
+            window.ethereum.on('accountsChanged', (accounts) => {
+                setConnection({
+                    isConnected: true,
+                    account: accounts[0]
+                })
+                console.log("Account changed to", accounts[0])
+            })
+
         } else {
             alert("No wallet detected!")
         }

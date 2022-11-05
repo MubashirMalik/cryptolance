@@ -1,8 +1,33 @@
 import { AiFillStar } from "react-icons/ai"
 import { SiEthereum } from "react-icons/si"
+import { useNavigate } from "react-router-dom"
 import React from 'react'
+import { addProject } from "../Web3Client"
+import { createToast } from "../Util"
+import { updateProject } from "../services/project.service"
 
-function ProposalCard({ number, walletAddress, amount, description, projectOwner, connection }) {
+function ProposalCard({ number, walletAddress, amount, description, projectOwner, connection, projectId }) {
+    const navigate = useNavigate()
+    const acceptBid = () => {
+        addProject('Project Title', amount, walletAddress, projectOwner)
+        .then(res =>  {
+            if (!res) {
+                console.log("Something went wrong..")
+                createToast("Transaction failed!")
+            } else {
+                updateProject(projectId, walletAddress)
+                .then(res => {
+                    if (!res) {
+                        console.log("Something went wrong..")
+                    } else {
+                        createToast("Project awarded to freelancer!")
+                        navigate(`/project-chat/${projectId}`)
+                    }
+                }) 
+            }
+        })
+    }
+
 	return (
 		<div className="w-full">
 			<div className="m-10">
@@ -39,7 +64,7 @@ function ProposalCard({ number, walletAddress, amount, description, projectOwner
                         { 
                             projectOwner === connection.account &&
                             <div className="flex justify-end gap-x-1">
-                                <button className="btn">Accept Bid</button>
+                                <button className="btn"  onClick={acceptBid}>Accept Bid</button>
                             </div>
                         }   
 					</div>

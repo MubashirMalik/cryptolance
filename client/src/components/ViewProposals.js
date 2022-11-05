@@ -31,6 +31,7 @@ const ViewProposals = ({ connection }) => {
             if (!res) {
                 console.log("Something went wrong..")
             } else {
+                setProposals(prevProposals => [...prevProposals, res])
                 createToast({text: "Posted successfully."})
             }
         })
@@ -46,7 +47,7 @@ const ViewProposals = ({ connection }) => {
         })
     }, [])
 
-    const displayProposals = proposals.map((proposal, index) => <ProposalCard {...proposal} key={proposal._id} number={index+1} connection={connection} />)
+    const displayProposals = proposals.map((proposal, index) => <ProposalCard {...proposal} key={proposal._id} number={index+1} connection={connection} projectId={formData.projectId} />)
 
     return (
         <div className="max-w-screen grid grid-flow-col grid-cols-4 gap-4">
