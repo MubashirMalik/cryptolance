@@ -9,13 +9,13 @@ import { updateProject } from "../services/project.service"
 function ProposalCard({ number, walletAddress, amount, description, projectOwner, connection, projectId }) {
     const navigate = useNavigate()
     const acceptBid = () => {
-        addProject('Project Title', amount, walletAddress, projectOwner)
+        addProject(projectId, 'Project Title', amount, walletAddress, projectOwner)
         .then(res =>  {
             if (!res) {
                 console.log("Something went wrong..")
                 createToast("Transaction failed!")
             } else {
-                updateProject(projectId, walletAddress)
+                updateProject(projectId, "In-Progress", walletAddress)
                 .then(res => {
                     if (!res) {
                         console.log("Something went wrong..")

@@ -34,13 +34,13 @@ exports.getProject = async (req, res, next) => {
 }
 
 exports.updateProject = async (req, res, next) => {
-    const { awardedTo } = req.body
+    const { awardedTo, status } = req.body
     const projectId = mongoose.Types.ObjectId(req.body.projectId)
     const project = await Project.updateOne(
         {_id: projectId},
         { $set: 
             {
-                status: "In-Progress",
+                status,
                 awardedTo
             }
         }

@@ -43,8 +43,8 @@ function App() {
                     <Route path="/my-projects" element={<MyProjects connection={connection} />}/>
 				</Routes>
 			</div>
+            <ToastContainer/>
 			<Footer />
-			<ToastContainer/>
 		</>
 	);
 }

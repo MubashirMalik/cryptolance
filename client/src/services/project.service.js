@@ -36,14 +36,14 @@ export const getProject = async (projectId) => {
     }
 }
 
-export const updateProject = async(projectId, awardedTo) => {
+export const updateProject = async(projectId, status, awardedTo) => {
     try {
         const res = await fetch(BASE_URL + "/update-project", {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({projectId, awardedTo})
+            body: JSON.stringify({projectId, status, awardedTo})
         })
         return await res.json();
     } catch (e) {

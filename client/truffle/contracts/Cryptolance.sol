@@ -17,6 +17,7 @@ contract Cryptolance {
     }
 
     struct Project {
+        string id;
         string title;
         bytes ipfsDescription;
         bytes ipfsFiles;
@@ -33,7 +34,7 @@ contract Cryptolance {
 
     mapping(address => Freelancer) freelancers;
     mapping(address => Employer) employers;
-    mapping(address => Project[]) projects;
+    mapping(address => mapping(string => Project)) projects;
 
     modifier onlyRegisteredFreelancer (address addr) {
         require(
@@ -68,6 +69,7 @@ contract Cryptolance {
     }
 
     function addProject(
+        string memory id,
         string memory title,
         bytes memory ipfsDescription,
         bytes memory ipfsFiles,
@@ -80,29 +82,33 @@ contract Cryptolance {
             "Ethers send must be greater than or equal to amount"
         );
 
-        projects[msg.sender].push(Project(title, ipfsDescription, ipfsFiles, amount, 1, awardedTo));
+        projects[msg.sender][id] = (Project(id, title, ipfsDescription, ipfsFiles, amount, 1, awardedTo));
     }
 
-    function releasePayment(uint256 projectId) external {
+    function releasePayment(string memory id) external {
         require(
-            projects[msg.sender][projectId].status == 1,
+            projects[msg.sender][id].status == 1,
             "Project id is not valid"
         );
-        projects[msg.sender][projectId].status = 2;
+        projects[msg.sender][id].status = 2;
     }
 
-    function completeProject(address employer, uint256 projectId) external {
-        require(
-            projects[employer][projectId].status == 2,
-            "Project id is not valid"
-        );
+    function completeProject(address employer, string memory id) external payable {
+        // require(
+        //     projects[employer][id].status == 2,
+        //     "Project id is not valid"
+        // );
 
-        require(projects[employer][projectId].awardedTo == msg.sender,
-            "You are not authorized to complete this project"
-        );
+        // require(projects[employer][id].awardedTo == msg.sender,
+        //     "You are not authorized to complete this project"
+        // );
 
-        projects[msg.sender][projectId].status = 3;
+        // projects[msg.sender][id].status = 3;
+        uint balance = address(this).balance;
+        require(balance >= projects[employer][id].amount * 1000000000000000000, "Error! No Balance to withdraw");
+
         address payable receiver = payable(msg.sender);
-        receiver.transfer(projects[employer][projectId].amount);
+        (bool success, ) = receiver.call{value: projects[employer][id].amount * 1000000000000000000}("");
+        require(success, "Transaction failed");
     }
 }

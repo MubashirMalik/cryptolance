@@ -18,13 +18,13 @@ export const initWeb3Client = async () => {
     }
 }
 
-export const addProject = async (title, amount, awardedTo, projectOwner) => {
+export const addProject = async (id, title, amount, awardedTo, projectOwner) => {
     const description = web3.utils.utf8ToHex('IPFS Description')
     const files = web3.utils.utf8ToHex('IPFS Files')
 
     try {
-        const res = cryptolance.methods
-        .addProject(title, description, files, amount, awardedTo)
+        const res = await cryptolance.methods
+        .addProject(id, title, description, files, amount, awardedTo)
         .send({ from: projectOwner, value: Web3.utils.toWei(amount.toString(), 'ether')})
         return await res;
     }  catch (e) {
@@ -34,11 +34,27 @@ export const addProject = async (title, amount, awardedTo, projectOwner) => {
 }
 
 // should be called by the owner (employer) of the project 
-export const releasePayment = async (projectId) => {
-
+export const releasePayment = async (projectId, projectOwner) => {
+    try {
+        const res = await cryptolance.methods
+        .releasePayment(projectId)
+        .send({ from: projectOwner })
+        return await res;
+    }  catch (e) {
+        console.log("[Solidity] releasePayment(): ", e)
+        return null;
+    }
 }
 
 // should be called by the freelancer of the project
-export const completeProject = async (employerAddress, projectId) => {
-
+export const completeProject = async (projectOwner, projectId, freelancer) => {
+    try {
+        const res = await cryptolance.methods
+        .completeProject(projectOwner, projectId)
+        .send({ from: freelancer })
+        return await res;
+    }  catch (e) {
+        console.log("[Solidity] completeProject(): ", e)
+        return null;
+    }
 }

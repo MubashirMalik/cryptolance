@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom"
 import { createToast } from "../Util";
 import { AiFillStar } from "react-icons/ai"
+import { releasePayment, completeProject } from "../Web3Client";
+import { updateProject } from "../services/project.service";
 import { SiEthereum } from "react-icons/si"
 import { getMessages, postMessage } from "../services/message.service";
 import { getProject } from "../services/project.service";
@@ -105,7 +107,45 @@ const ProjectChat = ({ connection }) => {
     );
 }
 
-function ProjectCard({ connection, title, description, budget, category, walletAddress }) {
+function ProjectCard({ _id, connection, title, description, budget, category, walletAddress, status, awardedTo }) {
+    const handleReleasePayment = () => {
+        releasePayment(_id, walletAddress)
+        .then(res =>  {
+            if (!res) {
+                console.log("Something went wrong..")
+                createToast("Transaction failed!")
+            } else {
+                updateProject(_id, "Completed-I")
+                .then(res => {
+                    if (!res) {
+                        console.log("Something went wrong..")
+                    } else {
+                        createToast("Payment Released!")
+                    }
+                }) 
+            }
+        })
+    }
+
+    const handleReleaseWork = () => {
+        completeProject(walletAddress, _id, awardedTo)
+        .then(res =>  {
+            if (!res) {
+                console.log("Something went wrong..")
+                createToast("Transaction failed!")
+            } else {
+                updateProject(_id, "Completed-II")
+                .then(res => {
+                    if (!res) {
+                        console.log("Something went wrong..")
+                    } else {
+                        createToast("Payment Released!")
+                    }
+                }) 
+            }
+        })
+    }
+
     return(
         <div className="w-full">
             <div className="m-10">
@@ -143,12 +183,11 @@ function ProjectCard({ connection, title, description, budget, category, walletA
                         </div>
                         <div className="flex justify-end gap-x-1">
                             {
-                                connection.account === walletAddress ? 
-                                    <button className="btn">Release Payment</button>
+                                connection.account === walletAddress && status === "In-Progress"? 
+                                    <button className="btn" onClick={handleReleasePayment}>Release Payment</button>
                                 :
-                                    <button className="btn">Release Work</button>
-                            }
-                            
+                                connection.account !== walletAddress &&status === "Completed-I" && <button className="btn" onClick={handleReleaseWork}>Release Work</button>
+                            } 
                         </div>
                     </div>
                 </div>
