@@ -60,7 +60,8 @@ const ProjectChat = ({ connection }) => {
         })
     }, [])
 
-    const displayMessages = messages.map((message) => <MessageCard {...message} key={message._id} connection={connection} />)
+    const displayMessages = messages.map((message) => <MessageCard {...message} key={message._id} connection={connection} accountType={message.sender === project.walletAddress ? "Employer" : "Freelancer"}
+    />)
 
     return (
         <div className="max-w-screen grid grid-flow-col grid-cols-4 gap-4">

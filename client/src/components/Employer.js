@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { postUser, getUser } from "../services/user.service";
 import { createToast } from "../Util"
 import CountrySelect from "./CountrySelect";
@@ -6,6 +7,7 @@ import LanguageSelect from "./LanguageSelect"
 import SideBar from "./SideBar";
 
 const Employer = ({ connection }) => {
+    const navigate = useNavigate()
     const [formData, setFormData] = useState({
         fullName: "",
         // email: "",
@@ -46,6 +48,7 @@ const Employer = ({ connection }) => {
                 console.log("Something went wrong..")
             } else {
                 createToast({text: "Saved successfully."})
+                navigate('/find-candidate')
             }
         })
     }

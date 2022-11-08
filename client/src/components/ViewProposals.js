@@ -63,48 +63,51 @@ const ViewProposals = ({ connection }) => {
                                 <h1>Be the first to submit a proposal. There are no proposals submitted for this project.</h1>
                             </div> :
                             displayProposals
-                            
                         }
-                        <h1 className="pl-10 text-2xl font-bold text-center">Place Bid</h1>
-                        <form onSubmit={handleSubmit} className="w-full">
-                            <div className="form-control pr-20 pl-20">
-                                <label className="label">
-                                    <span className="label-text text-slate-300">Wallet Address [Connected]</span>
-                                </label>
-                                <input 
-                                    type="text" 
-                                    disabled 
-                                    className="input input-bordered w-full max-w-screen" 
-                                    value={connection.account} 
-                                />
-                                <label className="label">
-                                    <span className="label-text text-slate-300">Amount (Ether)</span>
-                                </label>
-                                <input 
-                                    type="text" 
-                                    name="amount"
-                                    className="input input-bordered w-full max-w-screen " 
-                                    value={formData.amount} 
-                                    onChange={handleChange}
-                                    required
-                                />     
-                                <label className="label">
-                                    <span className="label-text text-slate-300">Description</span>
-                                </label>
-                                <textarea 
-                                    className="textarea textarea-bordered "
-                                    name="description" 
-                                    cols={5} rows={5} 
-                                    placeholder="Tell us a little about yourself" 
-                                    onChange={handleChange}
-                                    value={formData.description}
-                                    required
-                                />
-                                <div className="flex justify-center mt-5">
-                                    <button className="btn text-white mb-5">Submit Proposal</button>
-                                </div>
-                            </div>
-                        </form>
+                        { connection.account !== formData.projectOwner &&
+                            <>
+                                <h1 className="pl-10 text-2xl font-bold text-center">Place Bid</h1>
+                                <form onSubmit={handleSubmit} className="w-full">
+                                    <div className="form-control pr-20 pl-20">
+                                        <label className="label">
+                                            <span className="label-text text-slate-300">Wallet Address [Connected]</span>
+                                        </label>
+                                        <input 
+                                            type="text" 
+                                            disabled 
+                                            className="input input-bordered w-full max-w-screen" 
+                                            value={connection.account} 
+                                        />
+                                        <label className="label">
+                                            <span className="label-text text-slate-300">Amount (Ether)</span>
+                                        </label>
+                                        <input 
+                                            type="text" 
+                                            name="amount"
+                                            className="input input-bordered w-full max-w-screen " 
+                                            value={formData.amount} 
+                                            onChange={handleChange}
+                                            required
+                                        />     
+                                        <label className="label">
+                                            <span className="label-text text-slate-300">Description</span>
+                                        </label>
+                                        <textarea 
+                                            className="textarea textarea-bordered "
+                                            name="description" 
+                                            cols={5} rows={5} 
+                                            placeholder="Tell us a little about yourself" 
+                                            onChange={handleChange}
+                                            value={formData.description}
+                                            required
+                                        />
+                                        <div className="flex justify-center mt-5">
+                                            <button className="btn text-white mb-5">Submit Proposal</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </>
+                        }
                     </div> 
                 :
                     <div className="bg-slate-900 col-span-3 flex justify-center items-center">

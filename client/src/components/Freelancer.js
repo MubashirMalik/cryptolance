@@ -5,8 +5,10 @@ import CountrySelect from "./CountrySelect";
 import CategorySelect from "./CategorySelect"
 import LanguageSelect from "./LanguageSelect";
 import SideBar from "./SideBar";
+import { useNavigate } from "react-router-dom";
 
 const Freelancer = ({connection}) => {
+    const navigate = useNavigate()
     const [formData, setFormData] = useState({
         fullName: "",
         jobTitle: "",
@@ -50,13 +52,14 @@ const Freelancer = ({connection}) => {
                 console.log("Something went wrong..")
             } else {
                 createToast({text: "Saved successfully."})
+                navigate('/find-work')
             }
         })
     }
 
     return (
         <div className="max-w-screen grid grid-flow-col grid-cols-4 gap-4">
-            <SideBar />
+            <SideBar viewType="Freelancer"/>
             {
                 connection.isConnected ? 
                     <div className="bg-slate-900 col-span-3">
