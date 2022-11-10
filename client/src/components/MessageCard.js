@@ -1,8 +1,22 @@
 import { useEffect, useState } from "react"
 import { getUser } from "../services/user.service"
+import { downloadFile } from "../services/message.service";
+import {IoDocumentAttachOutline} from "react-icons/io5"
+import fileDownload from 'js-file-download';
 
-function MessageCard({ message, sender, connection, accountType}) {
+function MessageCard({ _id, message, sender, connection, accountType}) {
     const [user, setUser] = useState({})
+
+    const handleDownloadFile = async () => {
+        downloadFile(_id)
+        .then(res => {
+            if (!res) {
+                console.log("Something went wrong..")
+            } else {
+                fileDownload(new Blob([res.file.data.data]), res.file.name)
+            }
+        })
+    }
 
     useEffect(() => {
         getUser(sender, accountType)
@@ -10,7 +24,6 @@ function MessageCard({ message, sender, connection, accountType}) {
             if (!res) {
                 console.log("Something went wrong..")
             } else {
-                console.log(res)
                 setUser(res)
             }
         })
@@ -24,7 +37,17 @@ function MessageCard({ message, sender, connection, accountType}) {
 					<div className="p-4 flex flex-col ">
                         <div className={`flex flex-col ${messageClass}`}>
                             <div className="font-semibold text-teal-500">{ user.fullName }</div> 
-                            <div className="">{ message }</div>
+                            <div className="">
+                                { 
+                                    message === "Attachment" ? 
+                                        <div className="flex gap-x-1">
+                                            <IoDocumentAttachOutline className="text-xl text-slate-500"/>
+                                            <h2 className="" onClick={handleDownloadFile}>Contains Attachment</h2>
+                                        </div>
+                                    :
+                                    message  
+                                }
+                            </div>
                         </div>
 					</div>
 				</div>

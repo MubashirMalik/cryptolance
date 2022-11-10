@@ -25,7 +25,7 @@ export const addProject = async (id, title, amount, awardedTo, projectOwner) => 
     try {
         const res = await cryptolance.methods
         .addProject(id, title, description, files, amount, awardedTo)
-        .send({ from: projectOwner, value: Web3.utils.toWei(amount.toString(), 'ether')})
+        .send({ from: projectOwner, value: web3.utils.toWei(amount.toString(), 'ether')})
         return await res;
     }  catch (e) {
         console.log("[Solidity] addProject(): ", e)

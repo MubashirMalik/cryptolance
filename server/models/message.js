@@ -14,6 +14,10 @@ const messageSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    file: {
+        data: Buffer,
+        name: String
+    }
 }, { versionKey: false })
 
 module.exports = mongoose.model('Message', messageSchema)

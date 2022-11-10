@@ -78,7 +78,7 @@ contract Cryptolance {
     ) external payable /** onlyRegisteredFreelancer(awardedTo) onlyRegisteredEmployer(msg.sender) */ {
         
         require(
-            msg.value >= amount,
+            msg.value >= amount * (10 ** 18),
             "Ethers send must be greater than or equal to amount"
         );
 
@@ -94,16 +94,16 @@ contract Cryptolance {
     }
 
     function completeProject(address employer, string memory id) external payable {
-        // require(
-        //     projects[employer][id].status == 2,
-        //     "Project id is not valid"
-        // );
+        require(
+            projects[employer][id].status == 2,
+            "Project id is not valid"
+        );
 
-        // require(projects[employer][id].awardedTo == msg.sender,
-        //     "You are not authorized to complete this project"
-        // );
+        require(projects[employer][id].awardedTo == msg.sender,
+            "You are not authorized to complete this project"
+        );
 
-        // projects[msg.sender][id].status = 3;
+        projects[msg.sender][id].status = 3;
         uint balance = address(this).balance;
         require(balance >= projects[employer][id].amount * 1000000000000000000, "Error! No Balance to withdraw");
 
