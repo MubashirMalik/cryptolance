@@ -156,7 +156,9 @@ const Freelancer = ({connection}) => {
                                     required
                                 />
                                 <div className="flex justify-center mt-5">
-                                    <button className="btn text-white mb-5">Submit Details</button>
+                                    <button className="btn text-white mb-5">
+                                       {formData._id ? "Edit Details" : "Submit Details"}
+                                    </button>
                                 </div>
                             </div>
                         </form>

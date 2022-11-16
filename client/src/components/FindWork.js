@@ -17,7 +17,9 @@ const FindWork = ({ connection }) => {
         })
     }, [])
 
-    const displayProjects = projects.map((project) => <ProjectCard {...project} key={project._id} />)
+    const displayProjects = projects.map(
+        (project) => <ProjectCard {...project} key={project._id} viewType="Freelancer" />
+    )
 
     return (
         <div className="max-w-screen grid grid-flow-col grid-cols-4 gap-4">

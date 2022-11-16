@@ -2,7 +2,7 @@ import { AiFillStar } from "react-icons/ai"
 import { SiEthereum } from "react-icons/si"
 import { useNavigate } from "react-router-dom"
 
-function ProjectCard({ _id, title, status, description, budget, category, walletAddress }) {
+function ProjectCard({ _id, title, status, description, budget, category, walletAddress, viewType }) {
     const navigate = useNavigate()
 	return (
 		<div className="w-full">
@@ -42,11 +42,11 @@ function ProjectCard({ _id, title, status, description, budget, category, wallet
 						<div className="flex justify-end gap-x-1">
                             { status === "Open" ?
                                 <>
-                                    <button className="btn" onClick={() => navigate(`/view-proposals/${walletAddress}/${_id}`)}>Place Bid</button>
-                                    <button className="btn" onClick={() => navigate(`/view-proposals/${walletAddress}/${_id}`)}>Proposals</button>
+                                    <button className="btn" onClick={() => navigate(`/view-proposals/${walletAddress}/${_id}/${viewType}`)}>Place Bid</button>
+                                    <button className="btn" onClick={() => navigate(`/view-proposals/${walletAddress}/${_id}/${viewType}`)}>Proposals</button>
                                 </>
                             :
-                                <button className="btn" onClick={() => navigate(`/project-chat/${_id}`)}>View Discussions</button>
+                                <button className="btn" onClick={() => navigate(`/project-chat/${_id}/${viewType}`)}>View Discussions</button>
                             }
 						</div>
 					</div>

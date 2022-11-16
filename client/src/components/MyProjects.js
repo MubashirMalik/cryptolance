@@ -6,7 +6,8 @@ import { SideBarNav } from "./SideBar";
 
 const MyProjects = ({ connection }) => {
     const [projects, setProjects] = useState([])
-
+    const viewType = useParams().viewType;
+    
     useEffect(() => {
         getProjects('In-Progress', 'filtered', connection.account)
         .then(res =>  {
@@ -19,13 +20,13 @@ const MyProjects = ({ connection }) => {
     }, [])
 
     const displayProjects = projects.map((project) => <ProjectCard 
-        {...project} key={project._id} 
+        {...project} key={project._id} viewType={viewType}
     />)
 
     return (
         <div className="max-w-screen grid grid-flow-col grid-cols-4 gap-4">
             <div className="w-50 bg-slate-800 pt-10 col-span-1 min-h-screen">
-               <SideBarNav viewType={useParams().viewType}/>
+               <SideBarNav viewType={viewType}/>
             </div>
             {
                 connection.account ? 

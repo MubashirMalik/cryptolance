@@ -52,7 +52,7 @@ const ViewProposals = ({ connection }) => {
     return (
         <div className="max-w-screen grid grid-flow-col grid-cols-4 gap-4">
             <div className="w-50 bg-slate-800 pt-10 col-span-1">
-               <SideBarNav />
+               <SideBarNav viewType={useParams().viewType}/>
             </div>
             {
                 connection.account ? 

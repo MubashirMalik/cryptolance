@@ -3,8 +3,10 @@ import { postProject } from "../services/project.service"
 import { createToast } from '../Util';
 import SideBar from './SideBar';
 import CategorySelect from './CategorySelect';
+import { useNavigate } from 'react-router-dom';
 
 export default function PostProject({ connection }) {
+    const navigate = useNavigate()
     const [formData, setFormData] = useState({
         title: "",
         budget: "",
@@ -29,6 +31,7 @@ export default function PostProject({ connection }) {
                 console.log("Something went wrong..")
             } else {
                 createToast({text: "Posted successfully."})
+                navigate('/my-projects/Employer')
             }
         })
     }
