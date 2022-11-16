@@ -21,7 +21,7 @@ function ProposalCard({ number, walletAddress, amount, description, projectOwner
                         console.log("Something went wrong..")
                     } else {
                         createToast("Project awarded to freelancer!")
-                        navigate(`/project-chat/${projectId}`)
+                        navigate(`/project-chat/${projectId}/Employer`)
                     }
                 }) 
             }
