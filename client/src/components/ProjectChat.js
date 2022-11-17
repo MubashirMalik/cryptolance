@@ -83,7 +83,7 @@ const ProjectChat = ({ connection }) => {
     return (
         <div className="max-w-screen grid grid-flow-col grid-cols-4 gap-4">
             <div className="w-50 bg-slate-800 pt-10 col-span-1">
-                <SideBarNav viewType={connection.account === project.walletAddress ? "Employer" : "Freelancer"}/>
+                <SideBarNav viewType={useParams().viewType}/>
             </div>
             {
                 connection.account ? 
@@ -196,7 +196,7 @@ function ProjectCard({ _id, connection, title, description, budget, category, wa
                             <h2 className="text-2xl font-bold">{ title }</h2>
                             <div className="flex items-center">
                                 <SiEthereum />
-                                <div className="flex ">{ budget } ether per hour</div>
+                                <div className="flex ">{ budget } ether  </div>
                             </div>
                         </div>
                         <div className="flex flex-col items-start mt-3">

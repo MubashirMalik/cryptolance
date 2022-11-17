@@ -2,8 +2,10 @@ import { AiFillStar } from "react-icons/ai"
 import { SiEthereum } from "react-icons/si"
 import { GoLocation } from "react-icons/go"
 import React from 'react'
+import { useNavigate } from "react-router-dom"
 
 function FreelancerCard({ fullName, jobTitle, walletAddress, hourlyRate, country, category, language }) {
+    const navigate = useNavigate()
 	return (
 		<div className="w-full">
 			<div className="m-10">
@@ -13,7 +15,7 @@ function FreelancerCard({ fullName, jobTitle, walletAddress, hourlyRate, country
 							<h2 className="text-2xl font-bold">{ fullName }</h2>
 							<div className="flex items-center">
 								<SiEthereum />
-								<div className="flex ">{ hourlyRate } ether per hour</div>
+								<div className="flex ">{ hourlyRate } ether</div>
 							</div>
 						</div>
 						<div className="flex justify-between">
@@ -45,7 +47,7 @@ function FreelancerCard({ fullName, jobTitle, walletAddress, hourlyRate, country
 							<div className="bg-pink-100 p-1 pl-4 pr-4 rounded-full text-sm">{ language }</div>
 						</div>
 						<div className="flex justify-end">
-							<button className="btn">Connect for Work</button>
+							<button className="btn" onClick={() => navigate(`/post-project?budget=${hourlyRate}&freelancer=${walletAddress}`)}>Connect for Work</button>
 						</div>
 						
 					</div>

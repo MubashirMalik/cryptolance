@@ -19,8 +19,8 @@ export const initWeb3Client = async () => {
 }
 
 export const addProject = async (id, title, amount, awardedTo, projectOwner) => {
-    const description = web3.utils.utf8ToHex('IPFS Description')
-    const files = web3.utils.utf8ToHex('IPFS Files')
+    const description = web3.utils.utf8ToHex('Description')
+    const files = web3.utils.utf8ToHex('Files')
 
     try {
         const res = await cryptolance.methods

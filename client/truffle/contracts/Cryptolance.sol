@@ -7,7 +7,6 @@ contract Cryptolance {
         string email;
         bool isRegistered;
         // other data
-        
     }
 
     struct Employer {

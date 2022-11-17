@@ -3,10 +3,15 @@ import { postProject } from "../services/project.service"
 import { createToast } from '../Util';
 import SideBar from './SideBar';
 import CategorySelect from './CategorySelect';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
+
+const queryString = require('query-string');
 
 export default function PostProject({ connection }) {
     const navigate = useNavigate()
+    const { search } = useLocation()
+    const {budget, freelancer} = queryString.parse(search);
+
     const [formData, setFormData] = useState({
         title: "",
         budget: "",
@@ -82,11 +87,12 @@ export default function PostProject({ connection }) {
                                 <input 
                                     type="text"
                                     name="budget" 
-                                    placeholder="1.2" 
+                                    placeholder={budget ? budget : "3"} 
                                     className="input input-bordered w-full max-w-screen " 
-                                    value={formData.budget} 
+                                    value={budget ? budget : formData.budget} 
                                     onChange={handleChange} 
                                     required
+                                    disabled={budget && true}
                                 />
                                 <label className="label">
                                     <span className="label-text text-slate-300">Wallet Address [Connected]</span>
@@ -98,7 +104,9 @@ export default function PostProject({ connection }) {
                                     value={connection.account} 
                                 />
                                 <div className="flex justify-center mt-5">
-                                    <button className="btn text-white mb-5">Post Project</button>
+                                    <button className="btn text-white mb-5">
+                                        {budget ? "Award" : "Post"} Project
+                                    </button>
                                 </div>
                             </div>
                         </form>
