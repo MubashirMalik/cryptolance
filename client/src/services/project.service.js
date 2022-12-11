@@ -51,3 +51,19 @@ export const updateProject = async(projectId, status, awardedTo) => {
         return null;
     }
 }
+
+export const postFeedback = async(formData) => {
+    try {
+        const res = await fetch(BASE_URL + "/post-feedback", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({...formData})
+        })
+        return await res.json();
+    } catch (e) {
+        console.log("[MongoDb] postFeedback(): ", e)
+        return null;
+    }
+}

@@ -47,3 +47,23 @@ exports.updateProject = async (req, res, next) => {
     )
     res.status(200).json(project)
 }
+
+exports.postFeedback = async (req, res, next) => {
+    const { message, ratings, provider } = req.body
+    const projectId = mongoose.Types.ObjectId(req.body.projectId)
+
+    let feedback = { ratings, message}
+    if (provider === "freelancer") {
+        const project = await Project.updateOne(
+            {_id: projectId},
+            { $set: { freelancerFeedback: feedback}}
+        )
+        res.status(200).json(project)
+    } else {
+        const project = await Project.updateOne(
+            {_id: projectId},
+            { $set: { employerFeedback: feedback }}
+        )
+        res.status(200).json(project)
+    }
+}

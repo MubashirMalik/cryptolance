@@ -34,7 +34,9 @@ function FreelancerCard({ fullName, jobTitle, walletAddress, hourlyRate, country
 										<AiFillStar />
 										<AiFillStar />
 									</div>	
-									<div className="flex items-center">0 feedbacks</div>
+									<div className="flex items-center">{
+                                        Math.floor(Math.random() * (100 - 0) + 0) % 10
+                                    } feedbacks</div>
 								</div>
 							</div>
 						</div>

@@ -2,9 +2,10 @@ import { useEffect, useState } from "react"
 import { getUser } from "../services/user.service"
 import { downloadFile } from "../services/message.service";
 import {IoDocumentAttachOutline} from "react-icons/io5"
+import {AiFillWarning} from "react-icons/ai"
 import fileDownload from 'js-file-download';
 
-function MessageCard({ _id, message, sender, connection, accountType}) {
+function MessageCard({ _id, message, sender, connection, accountType, projectStatus, projectOwner}) {
     const [user, setUser] = useState({})
 
     const handleDownloadFile = async () => {
@@ -37,12 +38,37 @@ function MessageCard({ _id, message, sender, connection, accountType}) {
 					<div className="p-4 flex flex-col ">
                         <div className={`flex flex-col ${messageClass}`}>
                             <div className="font-semibold text-teal-500">{ user.fullName }</div> 
-                            <div className="">
+                            <div className="flex">
                                 { 
                                     message === "Attachment" ? 
-                                        <div className="flex gap-x-1">
-                                            <IoDocumentAttachOutline className="text-xl text-slate-500"/>
-                                            <h2 className="" onClick={handleDownloadFile}>Contains Attachment</h2>
+                                        <div className="flex flex-col gap-y-1 justify-center">
+                                            <button
+                                                type="button"
+                                                className="btn text-white my-2" 
+                                                onClick={handleDownloadFile}
+                                                disabled={
+                                                    projectStatus === "In-Progress"
+                                                    &&
+                                                    // employer files are not protected
+                                                    sender !== projectOwner
+                                                }
+                                                >
+                                                    <IoDocumentAttachOutline className="text-xl text-slate-500"/>
+                                                    Contains Attachment
+                                            </button>
+                                            { 
+                                                // employer files are not protected
+                                                sender !== projectOwner
+                                                &&
+                                                projectStatus === "In-Progress" 
+                                                && 
+                                                // project owner should see only
+                                                projectOwner === connection.account ? 
+                                                <div className="flex items-center">
+                                                    <AiFillWarning/>
+                                                    <span>View only mode: You can download the file after releasing payment</span>
+                                                </div> : ""
+                                            }
                                         </div>
                                     :
                                     message  

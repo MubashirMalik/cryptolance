@@ -12,4 +12,6 @@ router.post('/update-project', projectControllers.updateProject)
 
 router.post('/post-project', projectControllers.postProject)
 
+router.post('/post-feedback', projectControllers.postFeedback)
+
 module.exports = router

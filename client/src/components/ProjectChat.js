@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import { useParams } from "react-router-dom"
 import { createToast } from "../Util";
 import { AiFillStar } from "react-icons/ai"
@@ -9,11 +9,13 @@ import { getMessages, postMessage, postFile } from "../services/message.service"
 import { getProject } from "../services/project.service";
 import { SideBarNav } from "./SideBar";
 import MessageCard from "./MessageCard";
+import FeedbackCard from "./FeedbackCard";
 
 const ProjectChat = ({ connection }) => {
     const [file, setFile] = useState([])
     const [messages, setMessages] = useState([])
     const [project, setProject] = useState({})
+    const viewType = useParams().viewType
     const [formData, setFormData] = useState({
         message: "",
         projectId: useParams().projectId
@@ -77,7 +79,14 @@ const ProjectChat = ({ connection }) => {
         })
     }, [])
 
-    const displayMessages = messages.map((message) => <MessageCard {...message} key={message._id} connection={connection} accountType={message.sender === project.walletAddress ? "Employer" : "Freelancer"}
+    const displayMessages = messages.map((message) => 
+        <MessageCard 
+            {...message} 
+            key={message._id} 
+            connection={connection} 
+            accountType={message.sender === project.walletAddress ? "Employer" : "Freelancer"}
+            projectStatus={project.status}
+            projectOwner={project.walletAddress}
     />)
 
     return (
@@ -89,6 +98,27 @@ const ProjectChat = ({ connection }) => {
                 connection.account ? 
                     <div className="bg-slate-900 col-span-3">
                         <ProjectCard {...project} connection={connection} />
+
+                        {   
+                            // show feedback form only if
+                            // project is completed
+                            project.status === "Completed-II" 
+                            && 
+                            (
+                                // freelancer has not given feedback and view is open for freelancer
+                                (
+                                    project.freelancerFeedback === undefined && viewType === "Freelancer"
+                                )
+                                ||
+                                // employer has not given feedback and view is open for employer
+                                (
+                                    project.employerFeedback === undefined && viewType === "Employer"
+                                )
+                            )
+                            &&
+                            <FeedbackCard setProject={setProject} />
+                        }
+
                         <h1 className="pl-10 pt-10 text-2xl font-bold text-center">Project Chat</h1>
                         { messages.length === 0 ?
                             <div className="bg-slate-900 col-span-3 flex justify-center items-center mb-4">
@@ -96,48 +126,54 @@ const ProjectChat = ({ connection }) => {
                             </div> :
                             displayMessages
                         }
-                        <form onSubmit={handleSubmit} className="w-full">
-                            <div className="form-control pr-20 pl-20">
-                                <label className="label">
-                                    <span className="label-text text-slate-300">Message</span>
-                                </label>
-                                <textarea 
-                                    className="textarea textarea-bordered "
-                                    name="message" 
-                                    cols={5} rows={4} 
-                                    placeholder="Type your message" 
-                                    onChange={handleChange}
-                                    value={formData.message}
-                                    required
-                                />
-                                <div className="flex justify-center mt-5">
-                                    <button className="btn text-white mb-5">Send</button>
-                                </div>
-                            </div>
-                        </form>
-                        <form onSubmit={handleUploadFile}>
-                            <div className="form-control pr-20 pl-20">
-                                <div className="flex justify-center items-center w-full">
-                                    <label htmlFor="dropzone-file" className="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                                        <div className="flex flex-col justify-center items-center pt-5 pb-6">
-                                            <svg aria-hidden="true" className="mb-3 w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
-                                            <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span> or drag and drop</p>
-                                            <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
-                                        </div>
-                                        <input 
-                                            name="file"
-                                            onChange={handleFileUploadChange}
-                                            id="dropzone-file" 
-                                            type="file" 
-                                            className="hidden" 
+
+                        {   
+                            project.status === "Completed-I" &&
+                            <>
+                                <form onSubmit={handleSubmit} className="w-full">
+                                    <div className="form-control pr-20 pl-20">
+                                        <label className="label">
+                                            <span className="label-text text-slate-300">Message</span>
+                                        </label>
+                                        <textarea 
+                                            className="textarea textarea-bordered "
+                                            name="message" 
+                                            cols={5} rows={4} 
+                                            placeholder="Type your message" 
+                                            onChange={handleChange}
+                                            value={formData.message}
+                                            required
                                         />
-                                    </label>
-                                </div> 
-                            </div>
-                            <div className="flex justify-center mt-5">
-                                <button className="btn text-white mb-5">Upload Files</button>
-                            </div>       
-                        </form>
+                                        <div className="flex justify-center mt-5">
+                                            <button className="btn text-white mb-5">Send</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <form onSubmit={handleUploadFile}>
+                                    <div className="form-control pr-20 pl-20">
+                                        <div className="flex justify-center items-center w-full">
+                                            <label htmlFor="dropzone-file" className="flex flex-col justify-center items-center w-full h-64 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                                                <div className="flex flex-col justify-center items-center pt-5 pb-6">
+                                                    <svg aria-hidden="true" className="mb-3 w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+                                                    <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Click to upload</span> or drag and drop</p>
+                                                    <p className="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+                                                </div>
+                                                <input 
+                                                    name="file"
+                                                    onChange={handleFileUploadChange}
+                                                    id="dropzone-file" 
+                                                    type="file" 
+                                                    className="hidden" 
+                                                />
+                                            </label>
+                                        </div> 
+                                    </div>
+                                    <div className="flex justify-center mt-5">
+                                        <button className="btn text-white mb-5">Upload Files</button>
+                                    </div>       
+                                </form>
+                            </>
+                        }
                     </div> 
                 :
                     <div className="bg-slate-900 col-span-3 flex justify-center items-center">
@@ -211,14 +247,7 @@ function ProjectCard({ _id, connection, title, description, budget, category, wa
                             <div><b className="font-semibold">Posted by: </b>{walletAddress}</div>
                             <div className="flex items-center justify-between">
                                 <div className="flex gap-x-1">
-                                    <div className="flex items-center">
-                                        <AiFillStar />
-                                        <AiFillStar />
-                                        <AiFillStar />
-                                        <AiFillStar />
-                                        <AiFillStar />
-                                    </div>	
-                                    <div className="flex items-center">0 feedbacks</div>
+                                    <div className="flex items-center"><b>Status:&nbsp;</b> { status }</div>
                                 </div>
                             </div>
                         </div>
@@ -237,4 +266,4 @@ function ProjectCard({ _id, connection, title, description, budget, category, wa
     ) 
 }
 
-export default ProjectChat
+export default memo(ProjectChat)

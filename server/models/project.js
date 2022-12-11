@@ -25,7 +25,15 @@ const projectSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    awardedTo: String
+    awardedTo: String,
+    freelancerFeedback: {
+        message: String,
+        ratings: Number
+    },
+    employerFeedback: {
+        message: String,
+        ratings: Number
+    }
 }, { versionKey: false })
 
 module.exports = mongoose.model('Project', projectSchema)

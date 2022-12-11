@@ -27,7 +27,7 @@ function ProjectCard({ _id, title, status, description, budget, category, wallet
                         <div className="flex justify-between mt-3 mb-4">
 							<div><b className="font-semibold">Posted by: </b>{walletAddress}</div>
 							<div className="flex items-center justify-between">
-								<div className="flex gap-x-1">
+								{/* <div className="flex gap-x-1">
 									<div className="flex items-center">
 										<AiFillStar />
 										<AiFillStar />
@@ -36,7 +36,10 @@ function ProjectCard({ _id, title, status, description, budget, category, wallet
 										<AiFillStar />
 									</div>	
 									<div className="flex items-center">0 feedbacks</div>
-								</div>
+								</div> */}
+                                <div className="flex gap-x-1">
+                                    <div className="flex items-center"><b>Status:&nbsp;</b> { status }</div>
+                                </div>
 							</div>
 						</div>
 						<div className="flex justify-end gap-x-1">
