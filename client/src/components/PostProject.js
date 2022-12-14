@@ -14,7 +14,7 @@ export default function PostProject({ connection }) {
 
     const [formData, setFormData] = useState({
         title: "",
-        budget: "",
+        budget: budget ? budget : "",
         category: "Web, Mobile & Software Dev",
         description: "",
     })
