@@ -1,7 +1,6 @@
 import { useState, useEffect, memo } from "react";
 import { useParams } from "react-router-dom"
 import { createToast } from "../Util";
-import { AiFillStar } from "react-icons/ai"
 import { releasePayment, completeProject } from "../Web3Client";
 import { updateProject } from "../services/project.service";
 import { SiEthereum } from "react-icons/si"
@@ -127,7 +126,7 @@ const ProjectChat = ({ connection }) => {
                         }
 
                         {   
-                            project.status === "Completed-I" || project.status === "In-Progress" &&
+                            (project.status === "Completed-I" || project.status === "In-Progress") &&
                             <>
                                 <form onSubmit={handleSubmit} className="w-full">
                                     <div className="form-control pr-20 pl-20">

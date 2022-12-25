@@ -1,4 +1,3 @@
-import { AiFillStar } from "react-icons/ai"
 import { FaStar } from "react-icons/fa"
 import { SiEthereum } from "react-icons/si"
 import { GoLocation } from "react-icons/go"
