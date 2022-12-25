@@ -21,7 +21,7 @@ export const initWeb3Client = async () => {
 export const addProject = async (id, title, amount, awardedTo, projectOwner) => {
     const description = web3.utils.utf8ToHex('Description')
     const files = web3.utils.utf8ToHex('Files')
-
+    amount = Math.round(amount)
     try {
         const res = await cryptolance.methods
         .addProject(id, title, description, files, amount, awardedTo)
