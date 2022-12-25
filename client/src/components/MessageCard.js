@@ -5,7 +5,7 @@ import {IoDocumentAttachOutline} from "react-icons/io5"
 import {AiFillWarning} from "react-icons/ai"
 import fileDownload from 'js-file-download';
 
-function MessageCard({ _id, message, sender, connection, accountType, projectStatus, projectOwner}) {
+function MessageCard({ _id, message, sender, connection, projectStatus, projectOwner}) {
     const [user, setUser] = useState({})
 
     const handleDownloadFile = async () => {
@@ -20,7 +20,7 @@ function MessageCard({ _id, message, sender, connection, accountType, projectSta
     }
 
     useEffect(() => {
-        getUser(sender, accountType)
+        getUser(sender, sender === projectOwner ? "Employer" : "Freelancer")
         .then(res =>  {
             if (!res) {
                 console.log("Something went wrong..")
@@ -28,7 +28,7 @@ function MessageCard({ _id, message, sender, connection, accountType, projectSta
                 setUser(res)
             }
         })
-    }, [])
+    }, [projectOwner])
 
     const messageClass = sender === connection.account ? "items-end" : "items-left"
 	return (
