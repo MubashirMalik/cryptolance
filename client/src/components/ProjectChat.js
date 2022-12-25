@@ -128,7 +128,7 @@ const ProjectChat = ({ connection }) => {
                         }
 
                         {   
-                            project.status === "Completed-I" &&
+                            project.status === "Completed-I" || project.status === "In-Progress" &&
                             <>
                                 <form onSubmit={handleSubmit} className="w-full">
                                     <div className="form-control pr-20 pl-20">
