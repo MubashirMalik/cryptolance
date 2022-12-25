@@ -206,3 +206,24 @@ section img {
     text-align: center;
   }
 }
+
+.new-bg {
+    background:-moz-linear-gradient(137deg, rgba(212, 133, 69, 1) 17%, rgba(88, 84, 166, 1) 52%, rgba(109, 50, 72, 1) 100%); 
+
+    /* safari 5.1+,chrome 10+ */
+    background:-webkit-linear-gradient(137deg, rgba(212, 133, 69, 1) 17%, rgba(88, 84, 166, 1) 52%, rgba(109, 50, 72, 1) 100%);
+
+    /* opera 11.10+ */
+    background:-o-linear-gradient(137deg, rgba(212, 133, 69, 1) 17%, rgba(88, 84, 166, 1) 52%, rgba(109, 50, 72, 1) 100%);
+
+    /* ie 6-9 */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6D3248', endColorstr='#D48545', GradientType=1 );
+
+    /* ie 10+ */
+    background:-ms-linear-gradient(137deg, rgba(212, 133, 69, 1) 17%, rgba(88, 84, 166, 1) 52%, rgba(109, 50, 72, 1) 100%);
+
+    /* global 94%+ browsers support */
+    background:linear-gradient(137deg, rgba(212, 133, 69, 1) 17%, rgba(88, 84, 166, 1) 52%, rgba(109, 50, 72, 1) 100%);
+
+    background: #138086;
+}

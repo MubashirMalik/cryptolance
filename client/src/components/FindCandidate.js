@@ -55,7 +55,7 @@ const FindCandidate = ({ connection }) => {
     const displayFreelancers = filteredFreelancers.map((freelancer) => <FreelancerCard {...freelancer} key={freelancer._id} />)
 
     return (
-        <div className="max-w-screen grid grid-flow-col grid-cols-4 gap-4">
+        <div className="max-w-screen grid grid-flow-col grid-cols-4">
             <div className="flex flex-col items-center w-58 gap-y-8 bg-slate-800 pt-10 col-span-1">
                 <SideBarNav />
                 <div className="flex flex-col bg-slate-900 p-4 bg-opacity-60 rounded-lg w-11/12 mb-10">
@@ -109,8 +109,8 @@ const FindCandidate = ({ connection }) => {
             </div>
             {
                 connection.account ? 
-                    <div className="bg-slate-900 col-span-3">
-                        <h1 className="pl-10 pt-10 text-2xl font-bold">Find Candidates that fit your need</h1>
+                    <div className="bg-slate-900 col-span-3 new-bg">
+                        <h1 className="text-center pt-10 pb-5 text-3xl font-bold underline">Choose from List of Freelancers</h1>
                         { displayFreelancers }
                     </div> 
                 :

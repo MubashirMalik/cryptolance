@@ -50,25 +50,25 @@ const ViewProposals = ({ connection }) => {
     const displayProposals = proposals.map((proposal, index) => <ProposalCard {...proposal} key={proposal._id} number={index+1} connection={connection} projectId={formData.projectId} />)
 
     return (
-        <div className="max-w-screen grid grid-flow-col grid-cols-4 gap-4">
+        <div className="max-w-screen grid grid-flow-col grid-cols-4 min-h-screen">
             <div className="w-50 bg-slate-800 pt-10 col-span-1">
                <SideBarNav viewType={useParams().viewType}/>
             </div>
             {
                 connection.account ? 
-                    <div className="bg-slate-900 col-span-3">
-                        <h1 className="pl-10 pt-10 text-2xl font-bold text-center">Proposals</h1>
+                    <div className="bg-slate-900 col-span-3 new-bg">
+                        <h1 className="pl-10 pt-10 text-3xl font-bold text-center">Proposals</h1>
                         { proposals.length === 0 ?
-                            <div className="bg-slate-900 col-span-3 flex justify-center items-center mb-4">
-                                <h1>Be the first to submit a proposal. There are no proposals submitted for this project.</h1>
+                            <div className="bg-slate-900 col-span-3 flex justify-center items-center mb-4 new-bg">
+                                <h1 className="p-5 text-black text-md font-bold">Be the first to submit a proposal. There are no proposals submitted for this project.</h1>
                             </div> :
                             displayProposals
                         }
                         { connection.account !== formData.projectOwner &&
                             <>
                                 <h1 className="pl-10 text-2xl font-bold text-center">Place Bid</h1>
-                                <form onSubmit={handleSubmit} className="w-full">
-                                    <div className="form-control pr-20 pl-20">
+                                <form onSubmit={handleSubmit} className="flex justify-center">
+                                    <div className="form-control w-7/12">
                                         <label className="label">
                                             <span className="label-text text-slate-300">Wallet Address [Connected]</span>
                                         </label>

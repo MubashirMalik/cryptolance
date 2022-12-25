@@ -42,14 +42,14 @@ export default function PostProject({ connection }) {
     }
 
 	return (
-		<div className="max-w-screen grid grid-flow-col grid-cols-4 gap-4">
+		<div className="max-w-screen grid grid-flow-col grid-cols-4">
             <SideBar />
             {
                 connection.isConnected ? 
-                    <div className="bg-slate-900 col-span-3">
-                        <h1 className="pl-20 pt-10 pb-5 text-2xl font-bold">Tell us what you need done</h1>
-                        <form onSubmit={handleSubmit} className="w-full">
-                            <div className="form-control pr-20 pl-20">
+                    <div className="bg-slate-900 col-span-3 new-bg">
+                        <h1 className="pt-10 pb-5 text-3xl font-bold text-center underline">Tell us what you need done</h1>
+                        <form onSubmit={handleSubmit} className="flex justify-center">
+                            <div className="form-control w-7/12">
                                 <label className="label">
                                     <span className="label-text text-slate-300">Choose a title for your project</span>
                                 </label>
@@ -57,7 +57,7 @@ export default function PostProject({ connection }) {
                                     type="text" 
                                     name="title"
                                     placeholder="e.g. Build me a website" 
-                                    className="input input-bordered w-full max-w-screen " 
+                                    className="input input-bordered w-full max-w-screen" 
                                     value={formData.title} 
                                     onChange={handleChange}
                                     required 

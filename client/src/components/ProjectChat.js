@@ -84,19 +84,18 @@ const ProjectChat = ({ connection }) => {
             {...message} 
             key={message._id} 
             connection={connection} 
-            accountType={message.sender === project.walletAddress ? "Employer" : "Freelancer"}
             projectStatus={project.status}
             projectOwner={project.walletAddress}
     />)
 
     return (
-        <div className="max-w-screen grid grid-flow-col grid-cols-4 gap-4">
+        <div className="max-w-screen grid grid-flow-col grid-cols-4">
             <div className="w-50 bg-slate-800 pt-10 col-span-1">
                 <SideBarNav viewType={useParams().viewType}/>
             </div>
             {
                 connection.account ? 
-                    <div className="bg-slate-900 col-span-3">
+                    <div className="bg-slate-900 col-span-3 new-bg">
                         <ProjectCard {...project} connection={connection} />
 
                         {   
