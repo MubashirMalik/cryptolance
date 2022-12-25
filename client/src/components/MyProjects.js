@@ -9,15 +9,17 @@ const MyProjects = ({ connection }) => {
     const viewType = useParams().viewType;
     
     useEffect(() => {
-        getProjects('In-Progress', 'filtered', connection.account)
-        .then(res =>  {
-            if (!res) {
-                console.log("Something went wrong..")
-            } else {
-                setProjects(res)
-            }
-        })
-    }, [])
+        if (connection && connection.account) {
+            getProjects('In-Progress', 'filtered', connection.account)
+            .then(res =>  {
+                if (!res) {
+                    console.log("Something went wrong..")
+                } else {
+                    setProjects(res)
+                }
+            })
+        }
+    }, [connection])
 
     const displayProjects = projects.map((project) => <ProjectCard 
         {...project} key={project._id} viewType={viewType}
