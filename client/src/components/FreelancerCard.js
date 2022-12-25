@@ -1,11 +1,25 @@
 import { AiFillStar } from "react-icons/ai"
+import { FaStar } from "react-icons/fa"
 import { SiEthereum } from "react-icons/si"
 import { GoLocation } from "react-icons/go"
 import React from 'react'
 import { useNavigate } from "react-router-dom"
 
-function FreelancerCard({ fullName, jobTitle, walletAddress, hourlyRate, country, category, language }) {
+function FreelancerCard({ fullName, jobTitle, walletAddress, hourlyRate, country, category, language, ratings }) {
     const navigate = useNavigate()
+
+    const displayRatings = () => {
+        let ratingsIcon = []
+        for (let i = 0; i < 5; i++) {
+            if (i < ratings) {
+                ratingsIcon.push(<FaStar key={i} color="orange" />)
+            } else {
+                ratingsIcon.push(<FaStar />)
+            }
+        }
+        return ratingsIcon
+    }
+
 	return (
 		<div className="w-full">
 			<div className="m-10">
@@ -28,15 +42,9 @@ function FreelancerCard({ fullName, jobTitle, walletAddress, hourlyRate, country
 							<div className="flex items-center justify-between">
 								<div className="flex gap-x-1">
 									<div className="flex items-center">
-										<AiFillStar />
-										<AiFillStar />
-										<AiFillStar />
-										<AiFillStar />
-										<AiFillStar />
+                                        { displayRatings() } 
 									</div>	
-									<div className="flex items-center">{
-                                        Math.floor(Math.random() * (100 - 0) + 0) % 10
-                                    } feedbacks</div>
+									<div className="flex items-center">Ratings</div>
 								</div>
 							</div>
 						</div>
