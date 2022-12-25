@@ -57,7 +57,7 @@ const FindCandidate = ({ connection }) => {
     return (
         <div className="max-w-screen grid grid-flow-col grid-cols-4">
             <div className="flex flex-col items-center w-58 gap-y-8 bg-slate-800 pt-10 col-span-1">
-                <SideBarNav />
+                <SideBarNav viewType="Employer" connection={connection} />
                 <div className="flex flex-col bg-slate-900 p-4 bg-opacity-60 rounded-lg w-11/12 mb-10">
                     <h1 className="p-2">Filter Results</h1>
                     <label className="label">

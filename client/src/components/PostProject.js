@@ -45,7 +45,7 @@ export default function PostProject({ connection }) {
 
 	return (
 		<div className="max-w-screen grid grid-flow-col grid-cols-4">
-            <SideBar />
+            <SideBar viewType="Employer" connection={connection} />
             {
                 connection.isConnected ? 
                     <div className="bg-slate-900 col-span-3 new-bg">

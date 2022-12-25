@@ -27,7 +27,6 @@ const Freelancer = ({connection}) => {
                 if (!res) {
                     console.log("Something went wrong..")
                 } else {
-                    console.log(res)
                     setFormData(res)
                 }
             })
@@ -59,7 +58,7 @@ const Freelancer = ({connection}) => {
 
     return (
         <div className="max-w-screen grid grid-flow-col grid-cols-4">
-            <SideBar viewType="Freelancer"/>
+            <SideBar viewType="Freelancer" connection={connection} />
             {
                 connection.isConnected ? 
                     <div className="bg-slate-900 col-span-3 new-bg">
