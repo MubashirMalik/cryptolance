@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { postProject } from "../services/project.service"
+import { postProject, updateProject } from "../services/project.service"
 import { createToast } from '../Util';
 import SideBar from './SideBar';
 import CategorySelect from './CategorySelect';
@@ -35,6 +35,8 @@ export default function PostProject({ connection }) {
             if (!res) {
                 console.log("Something went wrong..")
             } else {
+                // If project is awarded directly to freelancer
+                budget && freelancer && updateProject(res._id, "In-Progress", freelancer)
                 createToast({text: "Posted successfully."})
                 navigate('/my-projects/Employer')
             }
