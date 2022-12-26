@@ -8,7 +8,7 @@ const Home = () => {
     const navigate = useNavigate();
 
     return (
-        <div className="max-w-screen bg-secondary">
+        <div className="max-w-screen bg-secondary new-bg">
             <main>
                 <img className='main_img' src={require('../logo.png')} alt="" />
                 <h1>FREELANCING ON BLOCKCHAIN</h1>
@@ -55,7 +55,7 @@ const Home = () => {
                 </div>
                 <img src={require('../images/calc.png')} alt="" />
             </section>
-            <section className="bg-secondary">
+            <section className="bg-secondary new-bg">
                 <div className="flex justify-center items-center flex-col  w-screen rounded-lg m-auto">
                     <h1 className="text-white flex"><RiQuestionAnswerFill className="pr-2" /> 24/7 Support</h1>
                     <p className="text-white m-2" style={{ "opacity": " 0.8" }}>Have a query? Feel free to contact our 24 hrs active support.</p>
