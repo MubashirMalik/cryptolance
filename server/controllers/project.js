@@ -14,6 +14,7 @@ exports.postProject = async (req, res, next) => {
     res.status(200).json(project)
 }
 
+// Bad controller example, 1 route/controller should perform one task, don't opt for generic code here
 exports.getProjects = async (req, res, next) => {
     const { status, filter, address } = req.params
     let projects;
@@ -25,6 +26,18 @@ exports.getProjects = async (req, res, next) => {
         })
     }
     res.status(200).json(projects)
+}
+
+exports.getUserProjects = async (req, res, next) => {
+    const { walletAddress, viewType } = req.params
+    let projects
+    if (viewType === "Freelancer") {
+        projects = await Project.find({ awardedTo: walletAddress })
+        res.status(200).json(projects)
+    } else {
+        projects = await Project.find({  walletAddress })
+        res.status(200).json(projects)
+    }
 }
 
 exports.getProject = async (req, res, next) => {

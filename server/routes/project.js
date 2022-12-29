@@ -6,6 +6,8 @@ const router = express.Router()
 
 router.get('/get-projects/:status/:filter/:address', projectControllers.getProjects)
 
+router.get('/get-user-projects/:walletAddress/:viewType', projectControllers.getUserProjects)
+
 router.get('/get-project/:projectId', projectControllers.getProject)
 
 router.post('/update-project', projectControllers.updateProject)

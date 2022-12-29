@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getProjects } from "../services/project.service";
+import { getUserProjects } from "../services/project.service";
 import ProjectCard from "./ProjectCard";
 import { SideBarNav } from "./SideBar";
 
@@ -10,7 +10,7 @@ const MyProjects = ({ connection }) => {
     
     useEffect(() => {
         if (connection && connection.account) {
-            getProjects('In-Progress', 'filtered', connection.account)
+            getUserProjects(connection.account, viewType)
             .then(res =>  {
                 if (!res) {
                     console.log("Something went wrong..")
@@ -19,7 +19,7 @@ const MyProjects = ({ connection }) => {
                 }
             })
         }
-    }, [connection])
+    }, [connection, viewType])
 
     const displayProjects = projects.map((project) => <ProjectCard 
         {...project} key={project._id} viewType={viewType}

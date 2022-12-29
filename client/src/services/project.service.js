@@ -26,6 +26,16 @@ export const getProjects = async (status, filter = "all", address = "0") => {
     }
 }
 
+export const getUserProjects = async (walletAddress, viewType) => {
+    try {
+        const res = await fetch(`${BASE_URL}/get-user-projects/${walletAddress}/${viewType}`)
+        return await res.json();
+    } catch (e) {
+        console.log("[MongoDb] getUserProjects(): ", e)
+        return null;
+    }
+}
+
 export const getProject = async (projectId) => {
     try {
         const res = await fetch(`${BASE_URL}/get-project/${projectId}`)
