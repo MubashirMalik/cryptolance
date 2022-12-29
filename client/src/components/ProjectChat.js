@@ -90,7 +90,7 @@ const ProjectChat = ({ connection }) => {
     return (
         <div className="max-w-screen grid grid-flow-col grid-cols-4">
             <div className="w-50 bg-slate-800 pt-10 col-span-1">
-                <SideBarNav viewType={useParams().viewType}/>
+                <SideBarNav viewType={useParams().viewType} connection={connection} />
             </div>
             {
                 connection.account ? 
